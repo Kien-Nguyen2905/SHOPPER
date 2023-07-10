@@ -1,0 +1,17 @@
+export const PATHS = {
+  HOME: "/",
+  ABOUT: "/about",
+  PRODUCT: "/product",
+  PRODUCT_DETAIL: "/product/:slug",
+  BLOG: "/blog",
+  BLOG_DETAIL: "/blog/:slug",
+  CONTACT: "/contact",
+  CART: "/cart",
+  CHECK_OUT: "/checkout",
+  DASHBOARD: "/dashboard",
+  FAG: "/fag",
+  PAYMENT: "/payment",
+  PRIVACY: "/privacy",
+  RETURN: "/return",
+  SHIPPING: "/shipping",
+};

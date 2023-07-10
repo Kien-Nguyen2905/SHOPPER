@@ -1,0 +1,60 @@
+a {
+  cursor: pointer;
+}
+li a.active {
+  color: #fcb941;
+}
+.react-date-picker .react-date-picker__wrapper {
+  border: none;
+}
+.react-date-picker__wrapper .input-group.input-spinner {
+  display: none;
+}
+.react-date-picker__clear-button {
+  pointer-events: none;
+  visibility: hidden;
+}
+/* ---------------------------------------------Calender-------------------------------------- */
+.MuiFormControl-root.MuiTextField-root {
+  display: flex;
+  padding: 0;
+  border: 1px solid #ebebeb;
+}
+.MuiInputBase-root.MuiInput-root.MuiInputBase-formControl.MuiInput-formControl.MuiInputBase-adornedEnd {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.MuiInputBase-input.MuiInput-input.MuiInputBase-inputAdornedEnd {
+  padding-top: 11px;
+  padding-left: 14px;
+}
+.MuiDialog-container.MuiDialog-scrollPaper .MuiPickersModal-dialogRoot {
+  min-width: 550px;
+  min-height: 450px;
+}
+.MuiDialogContent-root.MuiPickersModal-dialog .MuiPickersBasePicker-container {
+  align-items: center;
+}
+.MuiPickersBasePicker-container .MuiPickersDatePickerRoot-toolbar {
+  width: 100%;
+  font-size: 50px;
+}
+.MuiButton-label .MuiPickersToolbarText-toolbarTxt {
+  font-size: 20px;
+}
+.MuiButton-label .MuiPickersToolbarText-toolbarBtnSelected {
+  font-size: 40px;
+}
+.MuiPickersCalendar-transitionContainer {
+  font-size: 18px;
+}
+.MuiPickersBasePicker-container .MuiPickersBasePicker-pickerView {
+  min-width: 100%;
+}
+.MuiPickersBasePicker-pickerView .MuiPickersYearSelection-container {
+  overflow-y: scroll;
+}
+.MuiPickersYearSelection-container .MuiPickersYear-root {
+  font-size: 23px;
+}
