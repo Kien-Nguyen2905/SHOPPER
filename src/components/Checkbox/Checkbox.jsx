@@ -21,7 +21,7 @@ const Checkbox = ({ label, name, children, control, ...props }) => {
         {...props}
         {...field}
       />
-      <div className="custom-control-label" htmlFor="name">
+      <div className="custom-control-label" htmlFor={name}>
         {label}
         {children}
       </div>

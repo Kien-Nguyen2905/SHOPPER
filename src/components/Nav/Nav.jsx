@@ -1,22 +1,23 @@
-import { PATHS } from "@/constants/pathname";
 import React from "react";
-import { Link } from "react-router-dom";
 
-const Nav = ({ tab }) => {
+const Nav = ({ className, children }) => {
   return (
-    <nav aria-label="breadcrumb" className="breadcrumb-nav border-0 mb-0">
+    <nav aria-label="breadcrumb" className={`breadcrumb-nav ${className}`}>
       <div className="container">
-        <ol className="breadcrumb">
-          <li className="breadcrumb-item">
-            <Link to={PATHS.HOME}>Home</Link>
-          </li>
-          <li className="breadcrumb-item active" aria-current="page">
-            {tab}
-          </li>
-        </ol>
+        <ol className="breadcrumb">{children}</ol>
       </div>
     </nav>
   );
 };
+
+const NavItem = ({ children, isActive = false }) => {
+  return (
+    <li className={`breadcrumb-item ${isActive ? "active" : ""}`}>
+      {children}
+    </li>
+  );
+};
+
+Nav.Item = NavItem;
 
 export default Nav;

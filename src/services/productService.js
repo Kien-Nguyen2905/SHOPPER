@@ -1,10 +1,16 @@
 import instance from "./interceptor";
 
 export const productService = {
-  getFeaturedProduct(slug) {
-    return instance.get(`products${slug ? `/${slug}` : ""}`);
+  getProducts(query = "") {
+    return instance.get(`products${query}`);
   },
-  getProductCategorise() {
-    return instance.get(`product-categories`);
+  getProductsBySlug(slug = "") {
+    return instance.get(`products/${slug}`);
+  },
+  getCategories(query = "") {
+    return instance.get(`product-categories/${query}`);
+  },
+  getProductByCategorise(slug = "") {
+    return instance.get(`product-categories/${slug}`);
   },
 };

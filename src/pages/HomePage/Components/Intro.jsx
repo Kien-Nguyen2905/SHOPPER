@@ -31,14 +31,12 @@ const Intro = () => {
                   <div className="intro-content">
                     <h3 className="intro-subtitle text-primary">Daily Deals</h3>
                     <h1 className="intro-title">
-                      {" "}
                       AirPods <br />
-                      Earphones{" "}
+                      Earphones
                     </h1>
                     <div className="intro-price">
                       <sup>Today:</sup>
                       <span className="text-primary">
-                        {" "}
                         $247 <sup>.99</sup>
                       </span>
                     </div>
@@ -63,14 +61,12 @@ const Intro = () => {
                       Deals and Promotions
                     </h3>
                     <h1 className="intro-title">
-                      {" "}
                       Echo Dot <br />
-                      3rd Gen{" "}
+                      3rd Gen
                     </h1>
                     <div className="intro-price">
                       <sup className="intro-old-price">$49,99</sup>
                       <span className="text-primary">
-                        {" "}
                         $29 <sup>.99</sup>
                       </span>
                     </div>

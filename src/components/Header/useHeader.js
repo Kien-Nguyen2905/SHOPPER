@@ -12,11 +12,6 @@ const useHeader = () => {
   const onLogout = () => {
     dispatch(authActions.logout());
   };
-  useEffect(() => {
-    if (!!localStorage.getItem(LOCAL.token)) {
-      dispatch(profileUser());
-    }
-  }, []);
   return { openModal, profile, onLogout, getCategory };
 };
 

@@ -1,11 +1,7 @@
 import React from "react";
 import Input from "@/components/Input/Input";
+import { DatePicker } from "antd";
 import { useForm } from "react-hook-form";
-import DateFnsUtils from "@date-io/date-fns";
-import {
-  KeyboardDatePicker,
-  MuiPickersUtilsProvider,
-} from "@material-ui/pickers";
 
 const Account = () => {
   const {
@@ -14,14 +10,10 @@ const Account = () => {
     formState: { errors },
   } = useForm({
     mode: "onChange",
-    defaultValues: {
-      date: new Date(),
-    },
   });
   const handleAccount = (values) => {
     console.log(values);
   };
-  console.log(errors);
   return (
     <div
       className="tab-pane fade show active"
@@ -53,34 +45,21 @@ const Account = () => {
             />
           </div>
           <div className="col-sm-6">
-            {/* <Input
-              label="Ngày sinh"
-              name="date"
-              control={control}
-              type="date"
-              required
-            /> */}
             <Input
               name="date"
               control={control}
+              required
+              type="date"
               renderProp={(props, invalid, field) => (
                 <>
                   <label>Ngày sinh *</label>
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <KeyboardDatePicker
-                      format="dd/MM/yyyy"
-                      InputProps={{
-                        disableUnderline: true,
-                        style: {
-                          fontSize: "15px",
-                          color: "#777777",
-                        },
-                      }}
-                      className={`form-control ${invalid ? "input-error" : ""}`}
-                      {...props}
-                      {...field}
-                    />
-                  </MuiPickersUtilsProvider>
+                  <DatePicker
+                    placeholder="dd/MM/yyyy"
+                    format="DD/MM/YYYY"
+                    className={`form-control ${invalid ? "input-error" : ""}`}
+                    {...field}
+                    {...props}
+                  />
                 </>
               )}
             />

@@ -5069,14 +5069,9 @@ p {
 
 .product-media > a {
   display: block;
+  height: 275px;
+  overflow: hidden;
 }
-
-.product-image {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 .product-image-hover {
   position: absolute;
   left: 0;
@@ -8725,7 +8720,7 @@ small.form-text {
   height: auto;
 }
 
-.slider-loader {
+/* .slider-loader {
   color: #1a1a1a;
 }
 
@@ -8746,7 +8741,7 @@ small.form-text {
   transform-origin: center center;
   animation: rotating 3s linear infinite;
   z-index: 20;
-}
+} */
 
 .owl-loaded + .slider-loader {
   display: none;
