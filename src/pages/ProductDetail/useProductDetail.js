@@ -1,5 +1,5 @@
 import { useMainContext } from "@/components/Maincontext/MainContext";
-import { checkAuthen } from "@/constants/checkauthen";
+import { checkAuthen } from "@/constants/checkAuthen";
 import { THUNK_STATUS } from "@/constants/general";
 import { useMutation } from "@/hooks/useMutation";
 import { useQuery } from "@/hooks/useQuery";
