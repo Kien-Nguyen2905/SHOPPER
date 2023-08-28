@@ -1,4 +1,4 @@
-import { checkAuthen } from "@/constants/checkauthen";
+import { checkAuthen } from "@/constants/checkAuthen";
 import { EMPTY, THUNK_STATUS } from "@/constants/general";
 import { PATHS } from "@/constants/pathname";
 import { useMutation } from "@/hooks/useMutation";

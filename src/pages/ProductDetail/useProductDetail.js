@@ -5,7 +5,7 @@ import { useMutation } from "@/hooks/useMutation";
 import { useQuery } from "@/hooks/useQuery";
 import { productService } from "@/services/productService";
 import { wishlistService } from "@/services/wishlistService";
-import { profileUser } from "@/store/middleware/authMiddleWare";
+import { profileUser } from "@/store/middleware/authMiddleware";
 import { updateCart } from "@/store/middleware/cartMiddleware";
 import { message } from "antd";
 import { useForm } from "react-hook-form";

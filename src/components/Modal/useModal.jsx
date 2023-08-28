@@ -1,5 +1,5 @@
 import { authService } from "@/services/authenService";
-import { login } from "@/store/middleware/authMiddleWare";
+import { login } from "@/store/middleware/authMiddleware";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { message } from "antd";
 import { useDispatch } from "react-redux";
