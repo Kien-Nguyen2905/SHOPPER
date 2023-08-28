@@ -1,9 +1,34 @@
+import { convertPrice } from "@/utils/covertPrice";
+import { Modal } from "antd";
 import React from "react";
-import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { PATHS } from "../../constants/pathname";
 
-const HeaderMiddle = ({ onText }) => {
+const HeaderMiddle = ({
+  getCategory,
+  total,
+  totalProduct,
+  products,
+  onRemoveProduct,
+}) => {
+  const { confirm } = Modal;
+  const onRemoveProductClick = (product) => {
+    confirm({
+      title: "Do you want remove this item from cart?",
+      content: (
+        <>
+          <p>{`${product?.name || ""}`}</p>
+          <p>{`${product?.quantity} x ${product?.price}`}</p>
+        </>
+      ),
+      onOk() {
+        onRemoveProduct?.(product?.id);
+      },
+      onCancel() {
+        console.log("Cancel");
+      },
+    });
+  };
   return (
     <div className="header-middle sticky-header">
       <div className="container">
@@ -19,53 +44,28 @@ const HeaderMiddle = ({ onText }) => {
         <nav className="main-nav">
           <ul className="menu">
             <li>
-              <NavLink onClick={onText} to={PATHS.HOME}>
+              <NavLink onClick={getCategory} to={PATHS.HOME}>
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink onClick={onText} to={PATHS.ABOUT}>
+              <NavLink onClick={getCategory} to={PATHS.ABOUT}>
                 About Us
               </NavLink>
             </li>
             <li>
-              <NavLink onClick={onText} to={PATHS.PRODUCT}>
+              <NavLink onClick={getCategory} to={PATHS.PRODUCT}>
                 Product
               </NavLink>
             </li>
             <li>
-              <NavLink onClick={onText} to={PATHS.BLOG}>
-                Blog
-              </NavLink>
-            </li>
-            <li>
-              <NavLink onClick={onText} to={PATHS.CONTACT}>
+              <NavLink onClick={getCategory} to={PATHS.CONTACT}>
                 Contact Us
               </NavLink>
             </li>
           </ul>
         </nav>
         <div className="header-right">
-          <div className="header-search">
-            <a href="#" className="search-toggle" role="button" title="Search">
-              <i className="icon-search" />
-            </a>
-            <form action="#" method="get">
-              <div className="header-search-wrapper">
-                <label htmlFor="q" className="sr-only">
-                  Search
-                </label>
-                <input
-                  type="search"
-                  className="form-control"
-                  name="q"
-                  id="q"
-                  placeholder="Search in..."
-                  required
-                />
-              </div>
-            </form>
-          </div>
           <div className="dropdown cart-dropdown">
             <a
               href="#"
@@ -77,69 +77,74 @@ const HeaderMiddle = ({ onText }) => {
               data-display="static"
             >
               <i className="icon-shopping-cart" />
-              <span className="cart-count">2</span>
+              <span className="cart-count">{totalProduct || 0}</span>
             </a>
             <div className="dropdown-menu dropdown-menu-right">
-              <div className="dropdown-cart-products">
-                <div className="product">
-                  <div className="product-cart-details">
-                    <h4 className="product-title">
-                      <a href="product-detail.html">
-                        Beige knitted elastic runner shoes
+              <div
+                className="dropdown-cart-products"
+                style={{
+                  overflowY: "auto",
+                  maxHeight: "330px",
+                }}
+              >
+                {products?.length > 0 &&
+                  products?.map((item, index) => (
+                    <div
+                      className="product"
+                      key={index}
+                      style={{ alignItems: "center" }}
+                    >
+                      <div className="product-cart-details">
+                        <h4 className="product-title">
+                          <Link to={PATHS.PRODUCT + `/${item?.slug}`}>
+                            {item?.name}
+                          </Link>
+                        </h4>
+                        <span className="cart-product-info">
+                          <span className="cart-product-qty">
+                            {item?.quantity}
+                          </span>{" "}
+                          x {convertPrice(item?.price)}
+                        </span>
+                      </div>
+                      <figure className="product-image-container">
+                        <Link
+                          to={PATHS.PRODUCT + `/${item?.slug}`}
+                          className="product-image"
+                        >
+                          <img src={item?.images[0]} alt="product" />
+                        </Link>
+                      </figure>
+                      <a
+                        style={{ paddingRight: "1rem" }}
+                        className="btn-remove"
+                        title="Remove Product"
+                        onClick={() => onRemoveProductClick(item)}
+                      >
+                        <i className="icon-close" />
                       </a>
-                    </h4>
-                    <span className="cart-product-info">
-                      <span className="cart-product-qty">1</span> x $84.00{" "}
-                    </span>
-                  </div>
-                  <figure className="product-image-container">
-                    <a href="product-detail.html" className="product-image">
-                      <img
-                        src="/assets/images/products/cart/product-1.jpg"
-                        alt="product"
-                      />
-                    </a>
-                  </figure>
-                  <a href="#" className="btn-remove" title="Remove Product">
-                    <i className="icon-close" />
-                  </a>
-                </div>
-                <div className="product">
-                  <div className="product-cart-details">
-                    <h4 className="product-title">
-                      <a href="product-detail.html">
-                        Blue utility pinafore denim dress
-                      </a>
-                    </h4>
-                    <span className="cart-product-info">
-                      <span className="cart-product-qty">1</span> x $76.00{" "}
-                    </span>
-                  </div>
-                  <figure className="product-image-container">
-                    <a href="product-detail.html" className="product-image">
-                      <img
-                        src="/assets/images/products/cart/product-2.jpg"
-                        alt="product"
-                      />
-                    </a>
-                  </figure>
-                  <a href="#" className="btn-remove" title="Remove Product">
-                    <i className="icon-close" />
-                  </a>
-                </div>
+                    </div>
+                  ))}
               </div>
-              <div className="dropdown-cart-total">
-                <span>Total</span>
-                <span className="cart-total-price">$160.00</span>
-              </div>
-              <div className="dropdown-cart-action">
-                <a href="cart.html" className="btn btn-primary">
-                  View Cart
-                </a>
-                <a href="checkout.html" className="btn btn-outline-primary-2">
-                  <span>Checkout</span>
-                  <i className="icon-long-arrow-right" />
-                </a>
+              <div style={{ padding: "2.2rem", paddingTop: "0px" }}>
+                <div className="dropdown-cart-total">
+                  <span>Total</span>
+                  <span className="cart-total-price">
+                    {convertPrice(total)}
+                  </span>
+                </div>
+                <div className="dropdown-cart-action">
+                  <Link to={PATHS.CART} className="btn btn-primary">
+                    View Cart
+                  </Link>
+                  <Link
+                    to={PATHS.CHECK_OUT}
+                    className="btn btn-outline-primary-2"
+                  >
+                    <span>Checkout</span>
+                    <i className="icon-long-arrow-right" />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

@@ -69,16 +69,18 @@ const Footer = () => {
                 <h4 className="widget-title">My Account</h4>
                 <ul className="widget-list">
                   <li>
-                    <NavLink to={PATHS.DASHBOARD}>Account Details</NavLink>
+                    <NavLink to={PATHS.DASHBOARD.INDEX}>
+                      Account Details
+                    </NavLink>
                   </li>
                   <li>
                     <NavLink to={PATHS.CART}>View Cart</NavLink>
                   </li>
                   <li>
-                    <NavLink to={PATHS.DASHBOARD}>My Wishlist</NavLink>
+                    <NavLink to={PATHS.DASHBOARD.WISHLIST}>My Wishlist</NavLink>
                   </li>
                   <li>
-                    <NavLink to={PATHS.PRIVACY}>Track My Order</NavLink>
+                    <NavLink to={PATHS.DASHBOARD.ORDER}>Track My Order</NavLink>
                   </li>
                 </ul>
               </div>

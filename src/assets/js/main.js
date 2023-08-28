@@ -1,5 +1,5 @@
+// Main Js File
 export const libFunc = () => {
-  // Main Js File
   $(document).ready(function () {
     "use strict";
 
@@ -164,9 +164,10 @@ export const libFunc = () => {
             animDistance =
               $this.find(".product-footer").outerHeight() - animDiff;
 
-          $this
-            .find(".product-footer")
-            .css({ visibility: "visible", transform: "translateY(0)" });
+          $this.find(".product-footer").css({
+            visibility: "visible",
+            transform: "translateY(0)",
+          });
           $this
             .find(".product-body")
             .css("transform", "translateY(" + -animDistance + "px)");
@@ -174,9 +175,10 @@ export const libFunc = () => {
         function () {
           var $this = $(this);
 
-          $this
-            .find(".product-footer")
-            .css({ visibility: "hidden", transform: "translateY(100%)" });
+          $this.find(".product-footer").css({
+            visibility: "hidden",
+            transform: "translateY(100%)",
+          });
           $this.find(".product-body").css("transform", "translateY(0)");
         }
       );
@@ -266,15 +268,15 @@ export const libFunc = () => {
 
     // Quantity Input - Cart page - Product Details pages
     function quantityInputs() {
-      if ($.fn.inputSpinner) {
-        $("input[type='number']").inputSpinner({
-          decrementButton: '<i class="icon-minus"></i>',
-          incrementButton: '<i class="icon-plus"></i>',
-          groupClass: "input-spinner",
-          buttonsClass: "btn-spinner",
-          buttonsWidth: "26px",
-        });
-      }
+      // if ($.fn.inputSpinner) {
+      // 	$("input[type='number']").inputSpinner({
+      // 		decrementButton: '<i class="icon-minus"></i>',
+      // 		incrementButton: '<i class="icon-plus"></i>',
+      // 		groupClass: "input-spinner",
+      // 		buttonsClass: "btn-spinner",
+      // 		buttonsWidth: "26px",
+      // 	});
+      // }
     }
 
     // Sticky Content - Sidebar - Social Icons etc..
@@ -488,15 +490,15 @@ export const libFunc = () => {
       });
 
     // Dashboard Page Tab Trigger
-    $(".tab-trigger-link").on("click", function (e) {
-      var targetHref = $(this).attr("href");
+    // $(".tab-trigger-link").on("click", function (e) {
+    // 	var targetHref = $(this).attr("href");
 
-      $(".nav-dashboard")
-        .find('a[href="' + targetHref + '"]')
-        .trigger("click");
+    // 	$(".nav-dashboard")
+    // 		.find('a[href="' + targetHref + '"]')
+    // 		.trigger("click");
 
-      e.preventDefault();
-    });
+    // 	e.preventDefault();
+    // });
 
     // Masonry / Grid layout fnction
     function layoutInit(container, selector) {

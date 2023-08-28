@@ -4,7 +4,7 @@ export const productService = {
   getProducts(query = "") {
     return instance.get(`products${query}`);
   },
-  getProductsBySlug(slug = "") {
+  getProductsDetail(slug = "") {
     return instance.get(`products/${slug}`);
   },
   getCategories(query = "") {

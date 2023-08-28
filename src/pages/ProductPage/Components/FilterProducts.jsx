@@ -55,7 +55,7 @@ const FilterProducts = ({
             </div>
           </div>
         </div>
-        <div className="widget widget-collapsible">
+        {/* <div className="widget widget-collapsible">
           <h3 className="widget-title">
             <a
               data-toggle="collapse"
@@ -68,7 +68,7 @@ const FilterProducts = ({
               Price{" "}
             </a>
           </h3>
-          {/* <div className="collapse show" id="widget-2">
+          <div className="collapse show" id="widget-2">
             <div className="widget-body">
               <div className="filter-price">
                 <div className="filter-price-text">
@@ -78,8 +78,8 @@ const FilterProducts = ({
                 <div id="price-slider" />
               </div>
             </div>
-          </div> */}
-        </div>
+          </div>
+        </div> */}
       </div>
     </aside>
   );

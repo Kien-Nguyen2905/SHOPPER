@@ -10,19 +10,22 @@ export const useProductPage = () => {
   const { search } = useLocation();
   const [_, setSearchParams] = useSearchParams();
   const queryObject = queryString.parse(search);
-  console.log(search);
   const {
     data: dataProducts,
     loading: loadingProducts,
     error: errorProducts,
-    refecth: refecthProducts,
-  } = useQuery((query) =>
-    productService.getProducts(query || `?limit=${LIMITS}`)
+    refetch: refetchProducts,
+  } = useQuery(
+    (query) => productService.getProducts(query || `?limit=${LIMITS}`),
+    null,
+    {
+      preventInitialCall: true,
+    }
   );
   const products = dataProducts?.products || [];
   const pagiProducts = dataProducts?.pagination || {};
   useEffect(() => {
-    refecthProducts?.(search);
+    refetchProducts?.(search);
   }, [search]);
   const {
     data: dataCategorise,
@@ -68,7 +71,7 @@ export const useProductPage = () => {
     total: pagiProducts.total || 0,
     onPagiChange,
   };
-  const isLoadingProducts = useDebounce(loadingProducts, 300);
+  const isLoadingProducts = useDebounce(loadingProducts, 1500);
   const listProductsProps = {
     products,
     isLoadingProducts,

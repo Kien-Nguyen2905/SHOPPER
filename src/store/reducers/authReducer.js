@@ -1,6 +1,5 @@
 import { LOCAL } from "@/constants/localStorage";
 import { createSlice } from "@reduxjs/toolkit";
-import { profileUser } from "../middleware/authMiddleWare";
 const initialState = {
   profile: null,
 };

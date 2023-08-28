@@ -1,33 +1,75 @@
+import Input from "@/components/Input/Input";
+import { Select } from "antd";
 import React from "react";
+import { useForm } from "react-hook-form";
 
-const FormCheckout = () => {
+const FormCheckout = ({ province }) => {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    mode: "onChange",
+  });
+  const handleAddress = (values) => {
+    console.log(values);
+  };
   return (
-    <form action="#" className="checkout-form">
+    <form onSubmit={handleSubmit(handleAddress)} className="checkout-form">
       <div className="row">
         <div className="col-lg-9">
           <h2 className="checkout-title">Billing Details</h2>
           <div className="row">
             <div className="col-sm-4">
-              <label>Full Name *</label>
-              <input type="text" className="form-control" required />
+              <Input label="Full Name" name="name" control={control} required />
             </div>
             <div className="col-sm-4">
-              <label>Phone number *</label>
-              <input
-                type="text"
-                className="form-control input-error"
+              <Input
+                label="Phone number"
+                name="phone"
+                control={control}
                 required
               />
-              <p className="form-error">Please fill in this field</p>
             </div>
             <div className="col-sm-4">
-              <label>Email address *</label>
-              <input type="email" className="form-control" required />
+              <Input
+                label="Email address"
+                name="email"
+                control={control}
+                required
+              />
             </div>
           </div>
           <div className="row">
             <div className="col-sm-4">
-              <label>Province/City *</label>
+              <Input
+                name="provice"
+                control={control}
+                required
+                // renderProp={(props, invalid, field) => (
+                //   <>
+                //     <label>Province/City *</label>
+                //     <Select
+                //       placeholder="Vui lòng chọn"
+                //       style={{ width: "100%" }}
+                //       options={province}
+                //       value={province || null}
+                //       className={`form-control ${invalid ? "input-error" : ""}`}
+                //       onChange={(e) => {
+                //         field.onChange(e);
+                //       }}
+                //       filterOption={(input, option) =>
+                //         removeAccents(option?.name ?? "")
+                //           .toLowerCase()
+                //           .includes(removeAccents(input.toLowerCase()))
+                //       }
+                //       {...field}
+                //       {...props}
+                //     />
+                //   </>
+                // )}
+              />
+              {/* <label>Province/City *</label>
               <div className="select-custom">
                 <select
                   className="form-control form-select"
@@ -36,7 +78,7 @@ const FormCheckout = () => {
                 >
                   <option selected />
                 </select>
-              </div>
+              </div> */}
             </div>
             <div className="col-sm-4">
               <label>District/Town *</label>

@@ -4,9 +4,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 const FormQuestions = ({ submitForm }) => {
-  const { handleSubmit, control } = useForm({
-    mode: "onChange",
-  });
+  const { handleSubmit, control } = useForm();
   const handleQuestions = (values) => {
     submitForm?.(values);
   };

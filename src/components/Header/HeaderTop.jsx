@@ -1,6 +1,8 @@
+import { PATHS } from "@/constants/pathname";
 import React from "react";
+import { Link } from "react-router-dom";
 
-const HeaderTop = ({ openModal, profile, onLogout }) => {
+const HeaderTop = ({ openModal, profile, onLogout, list }) => {
   return (
     <div className="header-top">
       <div className="container">
@@ -21,15 +23,15 @@ const HeaderTop = ({ openModal, profile, onLogout }) => {
                   <li>
                     <ul>
                       <li>
-                        <a href="dashboard.html">Account Details</a>
+                        <Link to={PATHS.DASHBOARD.INDEX}>Account Details</Link>
                       </li>
                       <li>
-                        <a href="dashboard.html">Your Orders</a>
+                        <Link to={PATHS.DASHBOARD.ORDER}>Your Orders</Link>
                       </li>
                       <li>
-                        <a href="dashboard.html">
-                          Wishlist <span>(3)</span>
-                        </a>
+                        <Link to={PATHS.DASHBOARD.WISHLIST}>
+                          Wishlist <span>{`(${list})`}</span>
+                        </Link>
                       </li>
                       <li>
                         <a onClick={onLogout}>Sign Out</a>

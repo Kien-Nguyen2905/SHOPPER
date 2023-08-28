@@ -1,7 +1,7 @@
 import { useState } from "react";
 export const useMutation = (promise, { onSuccess, onFail }) => {
   const [data, setData] = useState();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
 
   const execute = async (...payload) => {

@@ -1,13 +1,18 @@
 import Banner from "@/components/Banner/Banner";
 import Nav from "@/components/Nav/Nav";
+import { PATHS } from "@/constants/pathname";
 import React from "react";
-import { useAbout } from "./useAbout";
+import { Link } from "react-router-dom";
 
 const AboutPage = () => {
-  const { category } = useAbout();
   return (
     <main className="main">
-      <Nav tab={category} />
+      <Nav>
+        <Nav.Item>
+          <Link to={PATHS.HOME}>Home</Link>
+        </Nav.Item>
+        <Nav.Item isActive>About</Nav.Item>
+      </Nav>
       <Banner bg="/assets/images/about-header-bg.jpg">
         <h1 className="page-title text-white">
           About us <span className="text-white">Who we are</span>
@@ -57,12 +62,10 @@ const AboutPage = () => {
                 <div className="about-images">
                   <img
                     src="assets/images/about/img-1.jpg"
-                    alt
                     className="about-img-front"
                   />
                   <img
                     src="assets/images/about/img-2.jpg"
-                    alt
                     className="about-img-back"
                   />
                 </div>

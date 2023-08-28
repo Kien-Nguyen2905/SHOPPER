@@ -11,9 +11,10 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
-    "antd": "^5.6.4",
+    "antd": "^5.8.4",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
+    "dayjs": "^1.11.9",
     "dotenv": "^16.3.1",
     "query-string": "^8.1.0",
     "react": "^18.2.0",
@@ -23,6 +24,7 @@
     "react-owl-carousel": "^2.3.3",
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.14.1",
+    "react-share": "^4.4.1",
     "styled-components": "^6.0.3"
   },
   "devDependencies": {

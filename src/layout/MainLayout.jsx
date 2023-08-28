@@ -12,6 +12,7 @@ import MenuMobile from "../components/Mobile/MenuMobile";
 import MenuMobileOverlay from "../components/Mobile/MenuMobileOverlay";
 import Modal from "../components/Modal/Modal";
 import { libFunc } from "@/assets/js/main";
+import { getCart } from "@/store/middleware/cartMiddleware";
 
 const MainLayout = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const MainLayout = () => {
   useEffect(() => {
     if (!!localStorage.getItem(LOCAL.token)) {
       dispatch(profileUser());
+      dispatch(getCart());
     }
   }, []);
   return (

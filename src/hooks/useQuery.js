@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
-export const useQuery = (promise, dependecies = []) => {
+export const useQuery = (promise, dependecies = [], configs) => {
+  const { preventInitialCall = false } = configs || {};
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   useEffect(() => {
-    fecthdata();
+    if (preventInitialCall) return;
+    fetchdata();
   }, dependecies);
-  const fecthdata = async (query) => {
+  const fetchdata = async (query) => {
     try {
+      setLoading(true);
       const res = await promise(query);
       setData(res || []);
     } catch (error) {
@@ -20,6 +23,6 @@ export const useQuery = (promise, dependecies = []) => {
     data,
     loading,
     error,
-    refecth: fecthdata,
+    refetch: fetchdata,
   };
 };

@@ -1,7 +1,11 @@
 import React from "react";
-import FormCheckout from "./Components/FormCheckout";
+import BillingDetail from "./Components/BillingDetail";
+import CouponCheckout from "./Components/CuponCheckout";
+import SummaryCheckout from "./Components/SummaryCheckout";
+import { useCheckout } from "./useCheckout";
 
 const CheckoutPage = () => {
+  const { couponProps, billingProps, summaryProps } = useCheckout();
   return (
     <main className="main">
       <div
@@ -30,23 +34,13 @@ const CheckoutPage = () => {
       <div className="page-content">
         <div className="checkout">
           <div className="container">
-            <div className="checkout-discount">
-              <form action="#">
-                <input
-                  type="text"
-                  className="form-control"
-                  required
-                  id="checkout-discount-input"
-                />
-                <label
-                  htmlFor="checkout-discount-input"
-                  className="text-truncate"
-                >
-                  Have a coupon? <span>Click here to enter your code</span>
-                </label>
-              </form>
+            <CouponCheckout {...couponProps}></CouponCheckout>
+            <div className="checkout-form">
+              <div className="row">
+                <BillingDetail {...billingProps} />
+                <SummaryCheckout {...summaryProps} />
+              </div>
             </div>
-            {/* <FormCheckout /> */}
           </div>
         </div>
       </div>

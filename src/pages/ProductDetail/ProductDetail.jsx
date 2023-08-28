@@ -1,102 +1,56 @@
+import Nav from "@/components/Nav/Nav";
+import QuantityInput from "@/components/QuantityInput/QuantityInput";
+import ShareLink from "@/components/ShareLink/ShareLink";
+import ViewImageZoom from "@/components/ViewImageZoom/ViewImageZoom";
+import { PATHS } from "@/constants/pathname";
+import { convertPrice } from "@/utils/covertPrice";
 import React from "react";
+import { Link } from "react-router-dom";
+import { useProductDetail } from "./useProductDetail";
 
 const ProductDetail = () => {
+  const pathUrl = window.location.href;
+  const { data, loading, error, formDetailData, onAdd, onWishList } =
+    useProductDetail();
+  const {
+    category,
+    id,
+    description,
+    shippingReturn,
+    images,
+    color,
+    name,
+    price,
+    rating,
+    stock,
+  } = data || {};
   return (
     <main className="main">
-      <nav aria-label="breadcrumb" className="breadcrumb-nav border-0 mb-0">
-        <div className="container d-flex align-items-center">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <a href="index.html">Home</a>
-            </li>
-            <li className="breadcrumb-item">
-              <a href="product.html">Product</a>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Dark yellow lace
-            </li>
-          </ol>
-        </div>
-      </nav>
+      <Nav>
+        <Nav.Item>
+          <Link to={PATHS.HOME}>Home</Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Link to={PATHS.PRODUCT}>Product</Link>
+        </Nav.Item>
+        <Nav.Item>{name}</Nav.Item>
+      </Nav>
       <div className="page-content">
         <div className="container">
           <div className="product-details-top">
             <div className="row">
               <div className="col-md-6">
-                <div className="product-gallery product-gallery-vertical">
-                  <div className="row">
-                    <figure className="product-main-image">
-                      <img
-                        id="product-zoom"
-                        src="/assets/images/products/single/1.jpg"
-                        data-zoom-image="assets/images/products/single/1-big.jpg"
-                        alt="product image"
-                      />
-                      <div
-                        id="btn-product-gallery"
-                        className="btn-product-gallery"
-                      >
-                        <i className="icon-arrows" />
-                      </div>
-                    </figure>
-                    <div
-                      id="product-zoom-gallery"
-                      className="product-image-gallery"
-                    >
-                      <a
-                        className="product-gallery-item active"
-                        href="#"
-                        data-image="assets/images/products/single/1.jpg"
-                        data-zoom-image="assets/images/products/single/1-big.jpg"
-                      >
-                        <img
-                          src="/assets/images/products/single/1-small.jpg"
-                          alt="Dark yellow lace"
-                        />
-                      </a>
-                      <a
-                        className="product-gallery-item"
-                        href="#"
-                        data-image="assets/images/products/single/2-big.jpg"
-                        data-zoom-image="assets/images/products/single/2-big.jpg"
-                      >
-                        <img
-                          src="/assets/images/products/single/2-small.jpg"
-                          alt="Dark yellow lace"
-                        />
-                      </a>
-                      <a
-                        className="product-gallery-item"
-                        href="#"
-                        data-image="assets/images/products/single/3-big.jpg"
-                        data-zoom-image="assets/images/products/single/3-big.jpg"
-                      >
-                        <img
-                          src="/assets/images/products/single/3-small.jpg"
-                          alt="Dark yellow lace"
-                        />
-                      </a>
-                      <a
-                        className="product-gallery-item"
-                        href="#"
-                        data-image="assets/images/products/single/4-big.jpg"
-                        data-zoom-image="assets/images/products/single/4-big.jpg"
-                      >
-                        <img
-                          src="/assets/images/products/single/4-small.jpg"
-                          alt="Dark yellow lace"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                <ViewImageZoom images={images ?? []} />
               </div>
               <div className="col-md-6">
                 <div className="product-details">
-                  <h1 className="product-title">Dark yellow lace</h1>
+                  <h1 className="product-title"> {name}</h1>
                   <div className="ratings-container">
                     <div className="ratings">
-                      <div className="ratings-val" style={{ width: "80%" }} />
+                      <div
+                        className="ratings-val"
+                        style={{ width: `${(rating || 0) * 20}%` }}
+                      />
                     </div>
                     <a
                       className="ratings-text"
@@ -106,62 +60,58 @@ const ProductDetail = () => {
                       ( 2 Reviews )
                     </a>
                   </div>
-                  <div className="product-price"> $84.00 </div>
-                  <div className="product-content">
-                    <p>
-                      Sed egestas, ante et vulputate volutpat, eros pede semper
-                      est, vitae luctus metus libero eu augue. Morbi purus
-                      libero, faucibus adipiscing. Sed lectus.{" "}
-                    </p>
-                  </div>
+                  <div className="product-price"> {convertPrice(price)} </div>
+                  <div
+                    className="product-content"
+                    dangerouslySetInnerHTML={{ __html: description }}
+                  ></div>
                   <div className="details-filter-row details-row-size">
                     <label>Color:</label>
                     <div className="product-nav product-nav-dots">
-                      <div
-                        className="product-nav-item active"
-                        style={{ background: "#e2e2e2" }}
-                      >
-                        <span className="sr-only">Color name</span>
-                      </div>
-                      <div
-                        className="product-nav-item"
-                        style={{ background: "#333333" }}
-                      >
-                        <span className="sr-only">Color name</span>
-                      </div>
-                      <div
-                        className="product-nav-item"
-                        style={{ background: "#f2bc9e" }}
-                      >
-                        <span className="sr-only">Color name</span>
-                      </div>
+                      {color?.map((item, index) => (
+                        <div
+                          key={index}
+                          className={`product-nav-item ${
+                            formDetailData.getValues("color") === item
+                              ? "active"
+                              : ""
+                          }`}
+                          style={{
+                            background: `${item}`,
+                          }}
+                          onClick={() => formDetailData.setValue("color", item)}
+                        >
+                          <span className="sr-only">Color name</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                   <div className="details-filter-row details-row-size">
                     <label htmlFor="qty">Qty:</label>
                     <div className="product-details-quantity">
-                      <input
-                        type="number"
-                        id="qty"
-                        className="form-control"
-                        defaultValue={1}
-                        min={1}
-                        max={10}
-                        step={1}
-                        data-decimals={0}
-                        required
-                      />
+                      <QuantityInput
+                        value={formDetailData.watch("quantity")}
+                        max={stock}
+                        onChange={(value) =>
+                          formDetailData.setValue("quantity", value)
+                        }
+                      ></QuantityInput>
                     </div>
                   </div>
                   <div className="product-details-action">
-                    <a href="#" className="btn-product btn-cart">
+                    <a
+                      className="btn-product btn-cart"
+                      onClick={() =>
+                        onAdd(formDetailData.watch("quantity"), id)
+                      }
+                    >
                       <span>add to cart</span>
                     </a>
                     <div className="details-action-wrapper">
                       <a
-                        href="#"
                         className="btn-product btn-wishlist"
                         title="Wishlist"
+                        onClick={() => onWishList(id)}
                       >
                         <span>Add to Wishlist</span>
                       </a>
@@ -170,43 +120,37 @@ const ProductDetail = () => {
                   <div className="product-details-footer">
                     <div className="product-cat">
                       <span>Category:</span>
-                      <a href="#">Women</a>, <a href="#">Dresses</a>,{" "}
-                      <a href="#">Yellow</a>
+                      <a href="#">{category?.name}</a>
                     </div>
-                    <div className="social-icons social-icons-sm">
+                    <div
+                      style={{ gap: "0 5px" }}
+                      className="social-icons social-icons-sm"
+                    >
                       <span className="social-label">Share:</span>
-                      <a
-                        href="#"
-                        className="social-icon"
-                        title="Facebook"
-                        target="_blank"
-                      >
+                      <ShareLink title={"Facebook"} path={pathUrl}>
                         <i className="icon-facebook-f" />
-                      </a>
-                      <a
-                        href="#"
-                        className="social-icon"
-                        title="Twitter"
-                        target="_blank"
+                      </ShareLink>
+                      <ShareLink
+                        type="twitter"
+                        title={"Twitter"}
+                        path={pathUrl}
                       >
                         <i className="icon-twitter" />
-                      </a>
-                      <a
-                        href="#"
-                        className="social-icon"
-                        title="Instagram"
-                        target="_blank"
+                      </ShareLink>
+                      <ShareLink
+                        type="instagram"
+                        title={"Instagram"}
+                        path={pathUrl}
                       >
                         <i className="icon-instagram" />
-                      </a>
-                      <a
-                        href="#"
-                        className="social-icon"
-                        title="Pinterest"
-                        target="_blank"
+                      </ShareLink>
+                      <ShareLink
+                        type="pinterest"
+                        title={"Pinterest"}
+                        path={pathUrl}
                       >
                         <i className="icon-pinterest" />
-                      </a>
+                      </ShareLink>
                     </div>
                   </div>
                 </div>

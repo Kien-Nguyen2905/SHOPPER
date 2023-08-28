@@ -1,8 +1,10 @@
+import ShareLink from "@/components/ShareLink/ShareLink";
 import { rules } from "@/constants/rules";
 import React from "react";
 import { useForm } from "react-hook-form";
 
 const Social = ({ getCoupon }) => {
+  const pathUrl = window.location.href;
   const {
     register,
     handleSubmit,
@@ -28,7 +30,7 @@ const Social = ({ getCoupon }) => {
                 <h3 className="cta-title">Shop Social</h3>
                 <p className="cta-desc">
                   Donec nec justo eget felis facilisis fermentum. Aliquam
-                  porttitor mauris sit amet orci.{" "}
+                  porttitor mauris sit amet orci.
                 </p>
                 <div className="social-icons social-icons-colored justify-content-center">
                   <a

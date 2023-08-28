@@ -1,8 +1,14 @@
+import Nav from "@/components/Nav/Nav";
+import QuantityInput from "@/components/QuantityInput/QuantityInput";
+import { convertPrice } from "@/utils/covertPrice";
 import React from "react";
 import { Link } from "react-router-dom";
 import { PATHS } from "../../constants/pathname";
+import CartTotal from "./Components/CartTotal";
+import useCartPage from "./useCartPage";
 
 const CartPage = () => {
+  const { products, onUpdateQuantity, totalProps } = useCartPage();
   return (
     <main className="main">
       <div
@@ -13,21 +19,15 @@ const CartPage = () => {
           <h1 className="page-title">Shopping Cart</h1>
         </div>
       </div>
-      <nav aria-label="breadcrumb" className="breadcrumb-nav">
-        <div className="container">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <a href="index.html">Home</a>
-            </li>
-            <li className="breadcrumb-item">
-              <a href="product.html">Product</a>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Shopping Cart
-            </li>
-          </ol>
-        </div>
-      </nav>
+      <Nav>
+        <Nav.Item>
+          <Link to={PATHS.HOME}>Home</Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Link to={PATHS.PRODUCT}>Product</Link>
+        </Nav.Item>
+        <Nav.Item isActive> Shopping Cart</Nav.Item>
+      </Nav>
       <div className="page-content">
         <div className="cart">
           <div className="container">
@@ -44,210 +44,53 @@ const CartPage = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td className="product-col">
-                        <div className="product">
-                          <figure className="product-media">
-                            <a href="#">
-                              <img
-                                src="assets/images/demos/demo-3/products/product-6.jpg"
-                                alt="Product image"
-                              />
-                            </a>
-                          </figure>
-                          <h3 className="product-title">
-                            <a href="#">Beige knitted elastic runner shoes</a>
-                          </h3>
-                        </div>
-                      </td>
-                      <td className="price-col">$84.00</td>
-                      <td className="quantity-col">
-                        <div className="cart-product-quantity">
-                          <input
-                            type="number"
-                            className="form-control"
-                            defaultValue={1}
-                            min={1}
-                            max={10}
-                            step={1}
-                            data-decimals={0}
-                            required
-                          />
-                        </div>
-                      </td>
-                      <td className="total-col">$84.00</td>
-                      <td className="remove-col">
-                        <button className="btn-remove">
-                          <i className="icon-close" />
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="product-col">
-                        <div className="product">
-                          <figure className="product-media">
-                            <a href="#">
-                              <img
-                                src="assets/images/demos/demo-3/products/product-2-2.jpg"
-                                alt="Product image"
-                              />
-                            </a>
-                          </figure>
-                          <h3 className="product-title">
-                            <a href="#">Blue utility pinafore denim dress</a>
-                          </h3>
-                        </div>
-                      </td>
-                      <td className="price-col">$76.00</td>
-                      <td className="quantity-col">
-                        <div className="cart-product-quantity">
-                          <input
-                            type="number"
-                            className="form-control"
-                            defaultValue={1}
-                            min={1}
-                            max={10}
-                            step={1}
-                            data-decimals={0}
-                            required
-                          />
-                        </div>
-                      </td>
-                      <td className="total-col">$76.00</td>
-                      <td className="remove-col">
-                        <button className="btn-remove">
-                          <i className="icon-close" />
-                        </button>
-                      </td>
-                    </tr>
+                    {products?.length > 0 &&
+                      products?.map((item, index) => (
+                        <tr key={index}>
+                          <td className="product-col">
+                            <div className="product">
+                              <figure className="product-media">
+                                <a>
+                                  <img
+                                    src={item?.images?.[0]}
+                                    alt="Product image"
+                                  />
+                                </a>
+                              </figure>
+                              <h3 className="product-title">
+                                <a>{item?.name}</a>
+                              </h3>
+                            </div>
+                          </td>
+                          <td className="price-col">
+                            {convertPrice(item?.price)}
+                          </td>
+                          <td className="quantity-col">
+                            <div className="cart-product-quantity">
+                              <QuantityInput
+                                value={Number(item?.quantity)}
+                                onChange={(value) =>
+                                  onUpdateQuantity?.(value, index)
+                                }
+                              ></QuantityInput>
+                            </div>
+                          </td>
+                          <td className="total-col">
+                            {convertPrice(
+                              Number(item?.price * item?.quantity || 0)
+                            )}
+                          </td>
+                          <td className="remove-col">
+                            <button className="btn-remove">
+                              <i className="icon-close" />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
-                <div className="cart-bottom">
-                  <div className="cart-discount">
-                    <form action="#">
-                      <div className="input-group">
-                        <input
-                          type="text"
-                          className="form-control input-error"
-                          required
-                          placeholder="Coupon code"
-                        />
-                        <div className="input-group-append">
-                          <button
-                            className="btn btn-outline-primary-2"
-                            type="submit"
-                          >
-                            <i className="icon-long-arrow-right" />
-                          </button>
-                        </div>
-                      </div>
-                      <p className="form-error">Please fill in this field</p>
-                    </form>
-                  </div>
-                  <a href="#" className="btn btn-outline-dark-2">
-                    <span>UPDATE CART</span>
-                    <i className="icon-refresh" />
-                  </a>
-                </div>
               </div>
-              <aside className="col-lg-3">
-                <div className="summary summary-cart">
-                  <h3 className="summary-title">Cart Total</h3>
-                  <table className="table table-summary">
-                    <tbody>
-                      <tr className="summary-subtotal">
-                        <td>Subtotal:</td>
-                        <td>$160.00</td>
-                      </tr>
-                      <tr className="summary-shipping">
-                        <td>Shipping:</td>
-                        <td>&nbsp;</td>
-                      </tr>
-                      <tr className="summary-shipping-row">
-                        <td>
-                          <div className="custom-control custom-radio">
-                            <input
-                              type="radio"
-                              id="free-shipping"
-                              name="shipping"
-                              className="custom-control-input"
-                            />
-                            <label
-                              className="custom-control-label"
-                              htmlFor="free-shipping"
-                            >
-                              Free Shipping
-                            </label>
-                          </div>
-                        </td>
-                        <td>$0.00</td>
-                      </tr>
-                      <tr className="summary-shipping-row">
-                        <td>
-                          <div className="custom-control custom-radio">
-                            <input
-                              type="radio"
-                              id="standart-shipping"
-                              name="shipping"
-                              className="custom-control-input"
-                            />
-                            <label
-                              className="custom-control-label"
-                              htmlFor="standart-shipping"
-                            >
-                              Standart:
-                            </label>
-                          </div>
-                        </td>
-                        <td>$10.00</td>
-                      </tr>
-                      <tr className="summary-shipping-row">
-                        <td>
-                          <div className="custom-control custom-radio">
-                            <input
-                              type="radio"
-                              id="express-shipping"
-                              name="shipping"
-                              className="custom-control-input"
-                            />
-                            <label
-                              className="custom-control-label"
-                              htmlFor="express-shipping"
-                            >
-                              Express:
-                            </label>
-                          </div>
-                        </td>
-                        <td>$20.00</td>
-                      </tr>
-                      <tr className="summary-shipping-estimate">
-                        <td>
-                          Estimate for Your Country <br />
-                          <a href="dashboard.html">Change address</a>
-                        </td>
-                        <td>&nbsp;</td>
-                      </tr>
-                      <tr className="summary-total">
-                        <td>Total:</td>
-                        <td>$160.00</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <Link
-                    to={PATHS.CHECK_OUT}
-                    className="btn btn-outline-primary-2 btn-order btn-block"
-                  >
-                    PROCEED TO CHECKOUT
-                  </Link>
-                </div>
-                <a
-                  href="category.html"
-                  className="btn btn-outline-dark-2 btn-block mb-3"
-                >
-                  <span>CONTINUE SHOPPING</span>
-                  <i className="icon-refresh" />
-                </a>
-              </aside>
+              <CartTotal {...totalProps} />
             </div>
           </div>
         </div>

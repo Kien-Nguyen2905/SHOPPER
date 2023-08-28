@@ -1,65 +1,35 @@
+import { PATHS } from "@/constants/pathname";
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
     <aside className="col-md-4 col-lg-3">
-      <ul className="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
+      <ul className="nav nav-dashboard flex-column mb-3 mb-md-0">
         <li className="nav-item">
-          <a
-            className="nav-link active"
-            id="tab-account-link"
-            data-toggle="tab"
-            href="#tab-account"
-            role="tab"
-            aria-controls="tab-account"
-            aria-selected="false"
-          >
+          <NavLink end to={PATHS.DASHBOARD.INDEX} className="nav-link">
             Account Details
-          </a>
+          </NavLink>
         </li>
         <li className="nav-item">
-          <a
-            className="nav-link"
-            id="tab-orders-link"
-            data-toggle="tab"
-            href="#tab-orders"
-            role="tab"
-            aria-controls="tab-orders"
-            aria-selected="false"
-          >
+          <NavLink to={PATHS.DASHBOARD.ORDER} className="nav-link">
             Orders
-          </a>
+          </NavLink>
         </li>
         <li className="nav-item">
-          <a
-            className="nav-link"
-            id="tab-address-link"
-            data-toggle="tab"
-            href="#tab-address"
-            role="tab"
-            aria-controls="tab-address"
-            aria-selected="false"
-          >
+          <NavLink to={PATHS.DASHBOARD.ADDRESSES} className="nav-link">
             Adresses
-          </a>
+          </NavLink>
         </li>
         <li className="nav-item">
-          <a
-            className="nav-link"
-            id="tab-wishlist-link"
-            data-toggle="tab"
-            href="#tab-wishlist"
-            role="tab"
-            aria-controls="tab-wishlist"
-            aria-selected="false"
-          >
+          <NavLink to={PATHS.DASHBOARD.WISHLIST} className="nav-link">
             Wishlist
-          </a>
+          </NavLink>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">
+          <NavLink to="/" className="nav-link">
             Sign Out
-          </a>
+          </NavLink>
         </li>
       </ul>
     </aside>

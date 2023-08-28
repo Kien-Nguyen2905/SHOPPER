@@ -10,6 +10,13 @@ export const authService = {
   getProfile() {
     return instance.get(`/customer/profiles`);
   },
+  updateProfile(payload = {}) {
+    return instance.put(`/customer/profiles`, payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  },
   putProfile(payload = {}) {
     return instance.put(`/customer/profiles`, payload, {
       headers: {

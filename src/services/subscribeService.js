@@ -1,6 +1,6 @@
 import instance from "./interceptor";
 export const subscribeService = {
   subscribe(payload = {}) {
-    return instance.post(`/subscribes/deals`, payload);
+    return instance.post(`subscribes/deals`, payload);
   },
 };

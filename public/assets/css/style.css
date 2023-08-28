@@ -982,7 +982,6 @@ blockquote.text-white cite span {
   z-index: 1001;
   border: none;
   margin: 1px 0 0;
-  padding: 2.2rem 3rem 2.5rem;
   border-radius: 0;
   border: none;
   box-shadow: 5px 10px 16px rgba(51, 51, 51, 0.05),
@@ -1147,8 +1146,8 @@ blockquote.text-white cite span {
 
 .cart-dropdown .dropdown-cart-products {
   margin-top: -1rem;
+  padding-left: 2.2rem;
 }
-
 .cart-dropdown .product {
   position: relative;
   display: flex;
@@ -5067,7 +5066,7 @@ p {
   overflow: hidden;
 }
 
-.product-media > a {
+.product.product-2 .product-media > a {
   display: block;
   height: 275px;
   overflow: hidden;

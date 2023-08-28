@@ -6,7 +6,7 @@ import { pageService } from "@/services/pageService";
 import { productService } from "@/services/productService";
 import { subscribeService } from "@/services/subscribeService";
 import { message } from "antd";
-import { useMemo, useRef } from "react";
+import { useMemo } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 

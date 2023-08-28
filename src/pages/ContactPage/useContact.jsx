@@ -1,9 +1,19 @@
 import { useMainContext } from "@/components/Maincontext/MainContext";
+import { useMutation } from "@/hooks/useMutation";
 import { subscribeService } from "@/services/subscribeService";
 import { message } from "antd";
 
 export const useContact = () => {
-  const { content } = useMainContext();
+  const { execute } = useMutation(subscribeService.subscribe, {
+    onSuccess: (data) => {
+      console.log(data);
+      message.success("Successfully");
+    },
+    onFail: (error) => {
+      console.log(error);
+      message.error("Failed");
+    },
+  });
   const submitQuestions = async (data) => {
     try {
       const payload = {
@@ -14,14 +24,11 @@ export const useContact = () => {
         phone: data.phone,
       };
       console.log(payload);
-      const res = await subscribeService.subscribe(payload);
-      if (res?.id) {
-        message.success("Successfully");
-      }
+      execute(payload);
     } catch (error) {
       message.error("Failed");
       console.log(error);
     }
   };
-  return { content, submitQuestions };
+  return { submitQuestions };
 };

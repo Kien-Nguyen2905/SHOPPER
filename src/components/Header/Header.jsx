@@ -4,11 +4,11 @@ import HeaderTop from "./HeaderTop";
 import useHeader from "./useHeader";
 
 const Header = () => {
-  const { getCategory, ...headerProps } = useHeader();
+  const { headerMiddleProps, ...headerProps } = useHeader();
   return (
     <header className="header">
       <HeaderTop {...headerProps} />
-      <HeaderMiddle onText={getCategory} />
+      <HeaderMiddle {...headerMiddleProps} />
     </header>
   );
 };
