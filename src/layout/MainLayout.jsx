@@ -1,7 +1,7 @@
 import React from "react";
 import { MainProvider } from "@/components/Maincontext/MainContext";
 import { LOCAL } from "@/constants/localStorage";
-import { profileUser } from "@/store/middleware/authMiddleWare";
+import { profileUser } from "@/store/middleware/authMiddleware";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet, useLocation } from "react-router-dom";
