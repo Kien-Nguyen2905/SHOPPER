@@ -8,22 +8,23 @@ import dayjs from "dayjs";
 import { authService } from "@/services/authenService";
 const AccountPage = () => {
   const { profile } = useSelector((store) => store.auth);
-  console.log(
-    dayjs(profile?.birthday).format("YYYY/MM/DD").replaceAll("/", "-")
-  );
-  console.log(profile);
+  let newProfile = {
+    ...profile,
+    birthday: profile?.birthday
+      ? dayjs(profile?.birthday).format("YYYY/MM/DD").replaceAll("/", "-")
+      : "",
+  };
+  console.log(newProfile?.birthday);
   const { setValue, handleSubmit, control } = useForm({
     defaultValues: {
-      email: profile?.email,
-      firstName: profile?.firstName || "",
-      phone: profile?.phone,
-      street: profile?.street,
-      province: profile?.province,
-      district: profile?.district,
-      ward: profile?.ward,
-      birthday: profile?.birthday
-        ? dayjs(profile?.birthday).format("YYYY/MM/DD").replaceAll("/", "-")
-        : "",
+      email: newProfile?.email,
+      firstName: newProfile?.firstName || "",
+      phone: newProfile?.phone,
+      street: newProfile?.street,
+      province: newProfile?.province,
+      district: newProfile?.district,
+      ward: newProfile?.ward,
+      birthday: newProfile?.birthday,
     },
   });
   const [dataProvince, setDataProvince] = useState([]);
@@ -126,12 +127,12 @@ const AccountPage = () => {
   }, [profile?.province]);
 
   useEffect(() => {
-    if (profile) {
-      for (const field in profile) {
-        setValue(field, profile[field]);
+    if (newProfile) {
+      for (const field in newProfile) {
+        setValue(field, newProfile[field]);
       }
     }
-  }, [profile]);
+  }, [newProfile]);
   return (
     <div
       className="tab-pane fade show active"
