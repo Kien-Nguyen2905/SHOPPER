@@ -8,7 +8,6 @@ import Input from "../Input/Input";
 
 const Login = ({ activeTab, onLogin }) => {
   const { control, handleSubmit } = useForm({
-    mode: "onChange",
     defaultValues: {
       email: localStorage.getItem("email") || "",
       password: localStorage.getItem("password") || "",

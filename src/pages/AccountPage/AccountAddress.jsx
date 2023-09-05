@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 
 const AccountAddress = () => {
   const { profile } = useSelector((store) => store.auth);
-
-  /* <-------  Effect Check loading  -------> */
   return (
     <div className="tab-pane fade active show">
       <p>

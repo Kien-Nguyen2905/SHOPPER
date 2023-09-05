@@ -11,6 +11,7 @@ const AccountPage = () => {
   console.log(
     dayjs(profile?.birthday).format("YYYY/MM/DD").replaceAll("/", "-")
   );
+  console.log(profile);
   const { setValue, handleSubmit, control } = useForm({
     defaultValues: {
       email: profile?.email,
@@ -21,9 +22,7 @@ const AccountPage = () => {
       district: profile?.district,
       ward: profile?.ward,
       birthday: profile?.birthday
-        ? dayjs(profile?.birthday || "01-01-2000")
-            .format("YYYY/MM/DD")
-            .replaceAll("/", "-")
+        ? dayjs(profile?.birthday).format("YYYY/MM/DD").replaceAll("/", "-")
         : "",
     },
   });
@@ -170,11 +169,11 @@ const AccountPage = () => {
           </div>
           <div className="col-sm-6">
             <Input
+              type="date"
               label="Ngày sinh"
               name="birthday"
               control={control}
               required
-              type="date"
             />
           </div>
         </div>
@@ -286,7 +285,7 @@ const AccountPage = () => {
         </div>
         <Input
           label="Street address"
-          name="address"
+          name="street"
           control={control}
           required
         />
