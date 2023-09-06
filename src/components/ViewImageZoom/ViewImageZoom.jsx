@@ -4,7 +4,6 @@ import { libFunc } from "@/assets/js/main";
 import { cn } from "@/constants/cn";
 
 const ViewImageZoom = ({ images }) => {
-  console.log(images);
   useEffect(() => {
     if (!!images?.length) {
       libFunc();

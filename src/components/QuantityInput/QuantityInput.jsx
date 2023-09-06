@@ -18,8 +18,6 @@ const QuantityInput = ({
   value,
   onChange,
 }) => {
-  console.log("v", value);
-
   const [renderValue, setRenderValue] = useState(value || 1);
   useEffect(() => {
     const myTimeout = setTimeout(() => {

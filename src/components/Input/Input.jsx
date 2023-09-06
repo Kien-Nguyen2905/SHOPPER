@@ -17,7 +17,7 @@ const Input = ({
   } = useController({
     control,
     name,
-    rules: rules[name],
+    rules: props.rules || rules[name],
     defaultValue: "",
   });
   return (

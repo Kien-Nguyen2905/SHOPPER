@@ -1,7 +1,9 @@
 import { PAYMENT_METHOD, THUNK_STATUS } from "@/constants/general";
 import { PATHS } from "@/constants/pathname";
 import { orderService } from "@/services/orderService";
+import { checkout } from "@/store/middleware/orderMiddleware";
 import { cartActions } from "@/store/reducers/cartReducer";
+import { message } from "antd";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -12,6 +14,7 @@ export const useCheckout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { cartInfo } = useSelector((state) => state.cart);
+  const { checkoutStatus } = useSelector((state) => state.order);
   // Coupon Props
   const onAddCoupon = async (coupon) => {
     try {
@@ -155,7 +158,7 @@ export const useCheckout = () => {
         orderPayload?.product?.length > 0 &&
         checkoutStatus !== THUNK_STATUS.pending
       ) {
-        const res = dispatch(checkout(orderPayload)).unwrap();
+        const res = await dispatch(checkout(orderPayload)).unwrap();
         if (res) {
           message.success("Succecssfully");
           navigate(PATHS.CHECK_OUT_SUCCESS + `?id=${res?.id}`);

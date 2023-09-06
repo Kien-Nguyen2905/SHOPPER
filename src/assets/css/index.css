@@ -25,7 +25,7 @@ a.active {
   visibility: hidden;
 }
 /* ---------------------------------------------Calender-------------------------------------- */
-.form-control.customize .ant-select-selector {
+.col-sm-4 .form-control.customize .ant-select-selector {
   border: none;
   background: none;
 }

@@ -1,3 +1,4 @@
+import Nav from "@/components/Nav/Nav";
 import React from "react";
 import BillingDetail from "./Components/BillingDetail";
 import CouponCheckout from "./Components/CuponCheckout";
@@ -16,21 +17,11 @@ const CheckoutPage = () => {
           <h1 className="page-title">Checkout</h1>
         </div>
       </div>
-      <nav aria-label="breadcrumb" className="breadcrumb-nav">
-        <div className="container">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <a href="index.html">Home</a>
-            </li>
-            <li className="breadcrumb-item">
-              <a href="product.html">Product</a>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Checkout
-            </li>
-          </ol>
-        </div>
-      </nav>
+      <Nav>
+        <Nav.Item>Home</Nav.Item>
+        <Nav.Item>Product</Nav.Item>
+        <Nav.Item isActive>Checkout</Nav.Item>
+      </Nav>
       <div className="page-content">
         <div className="checkout">
           <div className="container">

@@ -15,7 +15,7 @@ const AccountPage = () => {
       : "",
   };
   console.log(newProfile?.birthday);
-  const { setValue, handleSubmit, control } = useForm({
+  const { setValue, handleSubmit, control, watch } = useForm({
     defaultValues: {
       email: newProfile?.email,
       firstName: newProfile?.firstName || "",
@@ -27,6 +27,7 @@ const AccountPage = () => {
       birthday: newProfile?.birthday,
     },
   });
+  const newPassword = watch("newPassword" || "");
   const [dataProvince, setDataProvince] = useState([]);
   const [dataDistrict, setDataDistrict] = useState([]);
   const [dataWard, setDataWard] = useState([]);
@@ -105,12 +106,12 @@ const AccountPage = () => {
         ...data,
         lastName: profile?.lastName,
       });
-      console.log(res);
-      if (res.status == 200) {
+      if (res?.id) {
         message.success("Update success");
       }
     } catch (error) {
       message.error(error?.response?.data?.message || "Something went wrong");
+      //error BE API response
     }
   };
   useEffect(() => {
@@ -152,6 +153,7 @@ const AccountPage = () => {
           </div>
           <div className="col-sm-6">
             <Input
+              disabled
               label="Email address"
               name="email"
               control={control}
@@ -289,6 +291,28 @@ const AccountPage = () => {
           name="street"
           control={control}
           required
+        />
+        <Input
+          type="password"
+          label="Current password (leave blank to leave unchanged)"
+          name="password"
+          control={control}
+        />
+        <Input
+          type="password"
+          label="New password (leave blank to leave unchanged)"
+          name="newPassword"
+          control={control}
+        />
+        <Input
+          type="password"
+          label="Confirm new password"
+          name="confirmPassword"
+          control={control}
+          rules={{
+            validate: (value) =>
+              value === newPassword || "Password do not match",
+          }}
         />
         <button type="submit" className="btn btn-outline-primary-2">
           <span>SAVE CHANGES</span>

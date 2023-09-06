@@ -104,18 +104,14 @@ const BillingDetail = ({ form, profile }) => {
       <h2 className="checkout-title">Billing Details</h2>
       <div className="row">
         <div className="col-sm-4">
-          <Input
-            label="Full Name"
-            name="firstName"
-            control={control}
-            required
-          />
+          <Input label="Full Name" name="fullName" control={control} required />
         </div>
         <div className="col-sm-4">
           <Input label="Phone number" name="phone" control={control} required />
         </div>
         <div className="col-sm-4">
           <Input
+            disabled
             label="Email address"
             name="email"
             control={control}
@@ -147,7 +143,9 @@ const BillingDetail = ({ form, profile }) => {
                   }
                   value={valueProvince || null}
                   options={dataProvince}
-                  className={`form-control ${invalid ? "input-error" : ""}`}
+                  className={`form-control customize ${
+                    invalid ? "input-error" : ""
+                  }`}
                   onChange={(value) => {
                     field.onChange(value);
                     handleChangeProvince(value);
@@ -180,7 +178,9 @@ const BillingDetail = ({ form, profile }) => {
                   }
                   value={valueDistrict || null}
                   options={dataDistrict}
-                  className={`form-control ${invalid ? "input-error" : ""}`}
+                  className={`form-control customize ${
+                    invalid ? "input-error" : ""
+                  }`}
                   onChange={(value) => {
                     field.onChange(value);
                     handleChangeDistrict(value);
@@ -213,7 +213,9 @@ const BillingDetail = ({ form, profile }) => {
                   }
                   value={valueWard || null}
                   options={dataWard}
-                  className={`form-control ${invalid ? "input-error" : ""}`}
+                  className={`form-control customize ${
+                    invalid ? "input-error" : ""
+                  }`}
                   onChange={(value) => {
                     field.onChange(value);
                     handleChangeWard(value);

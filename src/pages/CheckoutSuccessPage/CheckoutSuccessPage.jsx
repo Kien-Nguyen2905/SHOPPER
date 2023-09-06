@@ -1,4 +1,6 @@
+import { PATHS } from "@/constants/pathname";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CheckoutSuccessPage = () => {
   return (
@@ -8,15 +10,15 @@ const CheckoutSuccessPage = () => {
           <h1 className="content-title">Your Order is Completed!</h1>
           <p>
             Your order <strong>646db21c106cc616ed3d221b</strong> has been
-            completed. Your order details are shown for your personal accont.{" "}
+            completed. Your order details are shown for your personal accont.
           </p>
-          <a
-            href="dashboard.html"
+          <Link
+            to={PATHS.DASHBOARD.ORDER}
             className="btn btn-outline-primary-2 btn-minwidth-lg"
           >
             <span>VIEW MY ORDERS</span>
             <i className="icon-long-arrow-right" />
-          </a>
+          </Link>
         </div>
       </div>
     </main>
