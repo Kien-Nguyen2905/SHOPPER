@@ -6,7 +6,7 @@ const EmptyOrder = () => {
   return (
     <>
       <p>No order has been made yet.</p>
-      <Link to={PATHS.PRO} className="btn btn-outline-primary-2">
+      <Link to={PATHS.PRODUCT} className="btn btn-outline-primary-2">
         <span>GO SHOP</span>
         <i className="icon-long-arrow-right" />
       </Link>
