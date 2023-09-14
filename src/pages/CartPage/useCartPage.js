@@ -1,11 +1,11 @@
 import { SHIPPING_OPTIONS, THUNK_STATUS } from "@/constants/general";
 import { updateCart } from "@/store/middleware/cartMiddleware";
 import { message } from "antd";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const useCartPage = () => {
   const dispatch = useDispatch();
-
   const { cartInfo, updateStatus } = useSelector((state) => state.cart);
   const products = cartInfo.product?.map((item, index) => ({
     ...item,
@@ -74,7 +74,6 @@ const useCartPage = () => {
     typeShip: cartInfo?.shipping?.typeShip,
     onUpdateShip,
   };
-  console.log(cartInfo);
   return { products, onUpdateQuantity, totalProps };
 };
 export default useCartPage;

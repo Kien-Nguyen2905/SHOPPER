@@ -14,11 +14,10 @@ const AccountPage = () => {
       ? dayjs(profile?.birthday).format("YYYY/MM/DD").replaceAll("/", "-")
       : "",
   };
-  console.log(newProfile?.birthday);
   const { setValue, handleSubmit, control, watch } = useForm({
     defaultValues: {
       email: newProfile?.email,
-      firstName: newProfile?.firstName || "",
+      firstName: newProfile?.firstName,
       phone: newProfile?.phone,
       street: newProfile?.street,
       province: newProfile?.province,

@@ -9,6 +9,7 @@ import useCartPage from "./useCartPage";
 
 const CartPage = () => {
   const { products, onUpdateQuantity, totalProps } = useCartPage();
+
   return (
     <main className="main">
       <div

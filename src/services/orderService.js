@@ -16,4 +16,7 @@ export const orderService = {
   getReviewFollowProduct(id = "") {
     return instance.get(`reviews/product/${id}`);
   },
+  postReview(payload = {}) {
+    return instance.post(`reviews`, payload);
+  },
 };

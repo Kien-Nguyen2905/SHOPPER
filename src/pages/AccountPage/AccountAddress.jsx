@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const AccountAddress = () => {
   const { profile } = useSelector((store) => store.auth);
+  console.log(profile);
   return (
     <div className="tab-pane fade active show">
       <p>
@@ -16,8 +17,8 @@ const AccountAddress = () => {
             <div className="card-body">
               <h3 className="card-title">Billing Address</h3>
               <p>
-                <strong>Fullname:</strong> {profile?.name || profile?.firstName}{" "}
-                <br />
+                <strong>Fullname:</strong>{" "}
+                {profile?.firstName || profile?.firstName} <br />
                 <strong>Email:</strong> {profile?.email} <br />
                 <strong>Phone number:</strong> {profile?.phone} <br />
                 <br />

@@ -173,7 +173,6 @@ export const useCheckout = () => {
   };
 
   const onPlaceOrder = () => {
-    console.log("here");
     if (!!!cartInfo.shipping?.typeShip) {
       message.error("Failed");
     } else if (!!!currenPaymentMethod) {

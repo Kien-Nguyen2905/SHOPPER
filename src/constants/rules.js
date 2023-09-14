@@ -18,6 +18,12 @@ export const rules = {
   name: {
     required: { value: true, message: "Please enter your name" },
   },
+  firstName: {
+    required: { value: true, message: "Please enter your name" },
+  },
+  birthday: {
+    required: { value: true, message: "Please enter your birthday" },
+  },
   phone: {
     required: { value: true, message: "Please enter your phone" },
     pattern: {
@@ -33,5 +39,11 @@ export const rules = {
   },
   date: {
     required: { value: true, message: "Please enter your birthday" },
+  },
+  title: {
+    required: { value: true, message: "Please enter title" },
+  },
+  description: {
+    required: { value: true, message: "Please enter description" },
   },
 };
