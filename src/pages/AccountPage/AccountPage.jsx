@@ -2,28 +2,26 @@ import React, { useEffect, useState } from "react";
 import Input from "@/components/Input/Input";
 import { message, Select } from "antd";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addressService } from "@/services/addressService";
 import dayjs from "dayjs";
 import { authService } from "@/services/authenService";
+import { profileUser } from "@/store/middleware/authMiddleware";
 const AccountPage = () => {
   const { profile } = useSelector((store) => store.auth);
-  let newProfile = {
-    ...profile,
-    birthday: profile?.birthday
-      ? dayjs(profile?.birthday).format("YYYY/MM/DD").replaceAll("/", "-")
-      : "",
-  };
-  const { setValue, handleSubmit, control, watch } = useForm({
+  const dispatch = useDispatch();
+  const { handleSubmit, control, watch } = useForm({
     defaultValues: {
-      email: newProfile?.email,
-      firstName: newProfile?.firstName,
-      phone: newProfile?.phone,
-      street: newProfile?.street,
-      province: newProfile?.province,
-      district: newProfile?.district,
-      ward: newProfile?.ward,
-      birthday: newProfile?.birthday,
+      email: profile?.email,
+      firstName: profile?.firstName,
+      phone: profile?.phone,
+      street: profile?.street,
+      province: profile?.province,
+      district: profile?.district,
+      ward: profile?.ward,
+      birthday: profile?.birthday
+        ? dayjs(profile?.birthday).format("YYYY/MM/DD").replaceAll("/", "-")
+        : "",
     },
   });
   const newPassword = watch("newPassword" || "");
@@ -106,6 +104,7 @@ const AccountPage = () => {
         lastName: profile?.lastName,
       });
       if (res?.id) {
+        dispatch(profileUser());
         message.success("Update success");
       }
     } catch (error) {
@@ -126,13 +125,6 @@ const AccountPage = () => {
     getDataProvince();
   }, [profile?.province]);
 
-  useEffect(() => {
-    if (newProfile) {
-      for (const field in newProfile) {
-        setValue(field, newProfile[field]);
-      }
-    }
-  }, [newProfile]);
   return (
     <div
       className="tab-pane fade show active"
