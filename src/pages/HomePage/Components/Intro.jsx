@@ -1,4 +1,6 @@
+import { PATHS } from "@/constants/pathname";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Intro = () => {
   return (
@@ -40,13 +42,13 @@ const Intro = () => {
                         $247 <sup>.99</sup>
                       </span>
                     </div>
-                    <a
-                      href="product-detail.html"
+                    <Link
+                      to={PATHS.PRODUCT}
                       className="btn btn-primary btn-round"
                     >
                       <span>Click Here</span>
                       <i className="icon-long-arrow-right" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="intro-slide">
@@ -70,13 +72,13 @@ const Intro = () => {
                         $29 <sup>.99</sup>
                       </span>
                     </div>
-                    <a
-                      href="product-detail.html"
+                    <Link
+                      to={PATHS.PRODUCT}
                       className="btn btn-primary btn-round"
                     >
                       <span>Click Here</span>
                       <i className="icon-long-arrow-right" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -86,58 +88,58 @@ const Intro = () => {
           <div className="col-lg-4">
             <div className="intro-banners">
               <div className="banner mb-lg-1 mb-xl-2">
-                <a href="#">
+                <Link to={PATHS.PRODUCT}>
                   <img
                     src="/assets/images/demos/demo-3/banners/banner-1.jpg"
                     alt="Banner"
                   />
-                </a>
+                </Link>
                 <div className="banner-content">
                   <h3 className="banner-title">
-                    <a href="#">
+                    <Link to={PATHS.PRODUCT}>
                       Edifier <br />
                       Stereo Bluetooth{" "}
-                    </a>
+                    </Link>
                   </h3>
-                  <a href="#" className="banner-link">
+                  <Link to={PATHS.PRODUCT} className="banner-link">
                     Shop Now <i className="icon-long-arrow-right" />
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="banner mb-lg-1 mb-xl-2">
-                <a href="#">
+                <Link to={PATHS.PRODUCT}>
                   <img
                     src="assets/images/demos/demo-3/banners/banner-2.jpg"
                     alt="Banner"
                   />
-                </a>
+                </Link>
                 <div className="banner-content">
                   <h3 className="banner-title">
-                    <a href="#">
+                    <Link to={PATHS.PRODUCT}>
                       GoPro - Fusion 360 <span>Save $70</span>
-                    </a>
+                    </Link>
                   </h3>
-                  <a href="#" className="banner-link">
+                  <Link to={PATHS.PRODUCT} className="banner-link">
                     Shop Now <i className="icon-long-arrow-right" />
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="banner mb-0">
-                <a href="#">
+                <Link to={PATHS.PRODUCT}>
                   <img
                     src="assets/images/demos/demo-3/banners/banner-3.jpg"
                     alt="Banner"
                   />
-                </a>
+                </Link>
                 <div className="banner-content">
                   <h3 className="banner-title">
-                    <a href="#">
+                    <Link to={PATHS.PRODUCT}>
                       Apple Watch 4 <span>Our Hottest Deals</span>
-                    </a>
+                    </Link>
                   </h3>
-                  <a href="#" className="banner-link">
+                  <Link to={PATHS.PRODUCT} className="banner-link">
                     Shop Now <i className="icon-long-arrow-right" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
