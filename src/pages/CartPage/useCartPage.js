@@ -1,7 +1,6 @@
 import { SHIPPING_OPTIONS, THUNK_STATUS } from "@/constants/general";
-import { updateCart } from "@/store/middleware/cartMiddleware";
+import { removeCart, updateCart } from "@/store/middleware/cartMiddleware";
 import { message } from "antd";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const useCartPage = () => {
@@ -67,13 +66,20 @@ const useCartPage = () => {
       }
     }
   };
-
+  const onRemoveProduct = (productId) => {
+    if (productId) {
+      dispatch(removeCart(productId));
+      message.success("Successfully");
+    } else {
+      message.error("Failed");
+    }
+  };
   const totalProps = {
     subTotal: cartInfo?.subTotal,
     total: cartInfo?.total,
     typeShip: cartInfo?.shipping?.typeShip,
     onUpdateShip,
   };
-  return { products, onUpdateQuantity, totalProps };
+  return { products, onUpdateQuantity, totalProps, onRemoveProduct };
 };
 export default useCartPage;

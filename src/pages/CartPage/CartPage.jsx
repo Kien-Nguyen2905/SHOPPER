@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav/Nav";
 import QuantityInput from "@/components/QuantityInput/QuantityInput";
 import { convertPrice } from "@/utils/covertPrice";
+import { Modal } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
 import { PATHS } from "../../constants/pathname";
@@ -8,8 +9,26 @@ import CartTotal from "./Components/CartTotal";
 import useCartPage from "./useCartPage";
 
 const CartPage = () => {
-  const { products, onUpdateQuantity, totalProps } = useCartPage();
-
+  const { products, onUpdateQuantity, totalProps, onRemoveProduct } =
+    useCartPage();
+  const { confirm } = Modal;
+  const removeItem = (item) => {
+    confirm({
+      title: "Do you want remove this item from cart?",
+      content: (
+        <>
+          <p>{`${item?.name || ""}`}</p>
+          <p>{`${item?.quantity} x $${item?.price}`}</p>
+        </>
+      ),
+      onOk() {
+        onRemoveProduct?.(item?.id);
+      },
+      onCancel() {
+        console.log("Cancel");
+      },
+    });
+  };
   return (
     <main className="main">
       <div
@@ -82,7 +101,10 @@ const CartPage = () => {
                             )}
                           </td>
                           <td className="remove-col">
-                            <button className="btn-remove">
+                            <button
+                              className="btn-remove"
+                              onClick={() => removeItem(item)}
+                            >
                               <i className="icon-close" />
                             </button>
                           </td>

@@ -1,6 +1,7 @@
 import React from "react";
 
-const DealProduct = () => {
+const DealProduct = ({ list }) => {
+  console.log(list);
   return (
     <div className="bg-light deal-container pt-7 pb-7 mb-5">
       <div className="container">

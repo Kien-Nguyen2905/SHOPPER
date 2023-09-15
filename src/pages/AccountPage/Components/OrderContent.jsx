@@ -15,7 +15,6 @@ const OrderContent = ({
   setIsModalOpen,
   setProductIdReview,
   setOrderIdReview,
-  listIdReviewed,
 }) => {
   const { fullName, phone, street, email } = address;
   const handleReview = (idProduct) => {

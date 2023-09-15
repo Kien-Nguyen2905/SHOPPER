@@ -25,13 +25,10 @@ const HomePage = () => {
       <Intro />
       <HotProduct {...hotProduct} renderProduct={renderProduct} />
       <div className="mb-7 mb-lg-11" />
-      <DealProduct />
+      <DealProduct {...hotProduct} />
       <BrandProduct listBrand={brands} />
       <div className="container">
         <hr className="mt-3 mb-6" />
-      </div>
-      <div className="container">
-        <hr className="mt-5 mb-6" />
       </div>
       <FeaturedProduct {...featuredProduct} renderProduct={renderProduct} />
       <div className="container">

@@ -4,7 +4,6 @@ import { createContext } from "react";
 import { useContext } from "react";
 const RadioContext = createContext();
 const RadioGroup = ({ children, defaultValue, className = "", onChange }) => {
-  console.log(defaultValue);
   const [valueChecked, setValueChecked] = useState(defaultValue || "");
   useEffect(() => {
     setValueChecked(defaultValue);
