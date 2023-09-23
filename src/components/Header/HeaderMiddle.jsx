@@ -10,6 +10,12 @@ const HeaderMiddle = ({
   totalProduct,
   products,
   onRemoveProduct,
+  openModalMobile,
+  isOpenModalMb,
+  isOpenSearch,
+  setIsOpenSearch,
+  onSearch,
+  search,
 }) => {
   const { confirm } = Modal;
   const onRemoveProductClick = (product) => {
@@ -29,13 +35,16 @@ const HeaderMiddle = ({
       },
     });
   };
+  console.log(isOpenModalMb);
   return (
     <div className="header-middle sticky-header">
       <div className="container">
         <div className="header-left">
-          <button className="mobile-menu-toggler">
+          <button
+            className={`mobile-menu-toggler ${isOpenModalMb ? "active" : ""}`}
+          >
             <span className="sr-only">Toggle mobile menu</span>
-            <i className="icon-bars" />
+            <i className="icon-bars" onClick={() => openModalMobile()} />
           </button>
           <Link to={PATHS.HOME} className="logo">
             <img src="/assets/images/logo.svg" alt="Molla Logo" width={160} />
@@ -66,6 +75,36 @@ const HeaderMiddle = ({
           </ul>
         </nav>
         <div className="header-right">
+          <div className="header-search">
+            <a
+              onClick={() => setIsOpenSearch(!isOpenSearch)}
+              className={`search-toggle ${isOpenSearch ? "active" : ""}`}
+              role="button"
+              title="Search"
+            >
+              <i className="icon-search" />
+            </a>
+            <form action="#" method="get">
+              <div
+                className={`header-search-wrapper ${
+                  isOpenSearch ? "show" : ""
+                }`}
+              >
+                <label htmlFor="q" className="sr-only">
+                  Search in...
+                </label>
+                <input
+                  type="search"
+                  className="form-control"
+                  name="q"
+                  id="q"
+                  placeholder="Search in..."
+                  value={search}
+                  onChange={onSearch}
+                />
+              </div>
+            </form>
+          </div>
           <div className="dropdown cart-dropdown">
             <a
               href="#"
@@ -103,7 +142,7 @@ const HeaderMiddle = ({
                         <span className="cart-product-info">
                           <span className="cart-product-qty">
                             {item?.quantity}
-                          </span>{" "}
+                          </span>
                           x {convertPrice(item?.price)}
                         </span>
                       </div>

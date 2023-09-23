@@ -1,5 +1,6 @@
 import { checkAuthen } from "@/constants/checkAuthen";
 import { EMPTY, THUNK_STATUS } from "@/constants/general";
+import { LOCAL } from "@/constants/localStorage";
 import { PATHS } from "@/constants/pathname";
 import { useMutation } from "@/hooks/useMutation";
 import { wishlistService } from "@/services/wishlistService";
@@ -12,7 +13,7 @@ import { Link } from "react-router-dom";
 import { useMainContext } from "../Maincontext/MainContext";
 
 const ProductCart = ({ item }) => {
-  const { openAuthenModal } = useMainContext();
+  const { openModal } = useMainContext();
   const { updateStatus } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const { execute } = useMutation(wishlistService.addList, {
@@ -26,11 +27,11 @@ const ProductCart = ({ item }) => {
     },
   });
   const onWishList = (idProduct) => {
-    execute({ product: idProduct });
+    checkAuthen ? execute({ product: idProduct }) : openModal();
   };
   const onAddToCart = async () => {
     if (!checkAuthen) {
-      openAuthenModal();
+      openModal();
     } else if (item?.id && updateStatus !== THUNK_STATUS.pending) {
       try {
         const res = await dispatch(addToCart(item?.id)).unwrap();

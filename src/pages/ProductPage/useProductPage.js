@@ -8,10 +8,8 @@ import { useLocation, useSearchParams } from "react-router-dom";
 const LIMITS = 9;
 export const useProductPage = () => {
   const { search } = useLocation();
-  console.log(search);
   const [_, setSearchParams] = useSearchParams();
   const queryObject = queryString.parse(search);
-  console.log(queryObject);
   const {
     data: dataProducts,
     loading: loadingProducts,

@@ -1,2 +1,2 @@
 export const convertPrice = (price, currency = "$") =>
-  currency + price?.toLocaleString("vi-VN");
+  currency + (price?.toLocaleString("vi-VN") || 0);

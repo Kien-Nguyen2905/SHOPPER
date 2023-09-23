@@ -2750,6 +2750,7 @@ blockquote.text-white cite span {
 .mobile-menu-container .social-icons {
   justify-content: center;
   margin-bottom: 0;
+  gap: 25px;
 }
 
 .mobile-menu-container .social-icon {

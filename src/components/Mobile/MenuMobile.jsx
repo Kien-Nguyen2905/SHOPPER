@@ -1,13 +1,30 @@
+import { PATHS } from "@/constants/pathname";
+import { useQuery } from "@/hooks/useQuery";
+import { productService } from "@/services/productService";
+import queryString from "query-string";
 import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useMainContext } from "../Maincontext/MainContext";
+import ShareLink from "../ShareLink/ShareLink";
 
 const MenuMobile = () => {
+  const pathUrl = window.location.href;
+  const { pathname, search } = useLocation();
+  const { closeModalMobile } = useMainContext();
+  const queryObject = queryString.parse(search);
+  const {
+    data: dataCategorise,
+    loading: loadingCategorise,
+    error: errorCategorise,
+  } = useQuery(productService.getCategories);
+  const categorise = dataCategorise?.products || [];
   return (
     <div className="mobile-menu-container">
       <div className="mobile-menu-wrapper">
-        <span className="mobile-menu-close">
+        <span className="mobile-menu-close" onClick={() => closeModalMobile()}>
           <i className="icon-close" />
         </span>
-        <form action="#" method="get" className="mobile-search">
+        {/* <form action="#" method="get" className="mobile-search">
           <label htmlFor="mobile-search" className="sr-only">
             Search
           </label>
@@ -22,7 +39,7 @@ const MenuMobile = () => {
           <button className="btn btn-primary" type="submit">
             <i className="icon-search" />
           </button>
-        </form>
+        </form> */}
         <ul className="nav nav-pills-mobile nav-border-anim" role="tablist">
           <li className="nav-item">
             <a
@@ -60,20 +77,39 @@ const MenuMobile = () => {
           >
             <nav className="mobile-nav">
               <ul className="mobile-menu">
-                <li>
-                  <a href="index.html">Home</a>
+                <li className={`${pathname == "/" ? "active" : ""}`}>
+                  <Link to={`${PATHS.HOME}`} onClick={() => closeModalMobile()}>
+                    Home
+                  </Link>
                 </li>
-                <li className="active">
-                  <a href="about.html">About Us</a>
+                <li className={`${pathname == "/about" ? "active" : ""}`}>
+                  <Link
+                    to={`${PATHS.ABOUT}`}
+                    onClick={() => closeModalMobile()}
+                  >
+                    About Us
+                  </Link>
                 </li>
-                <li>
-                  <a href="product.html">Product</a>
+                <li className={`${pathname == "/product" ? "active" : ""}`}>
+                  <Link
+                    to={`${PATHS.PRODUCT}`}
+                    onClick={() => closeModalMobile()}
+                  >
+                    Product
+                  </Link>
                 </li>
-                <li>
-                  <a href="blog.html">Blog</a>
-                </li>
-                <li>
-                  <a href="contact.html">Contact Us</a>
+                {/* <li className={`${pathname == "/blog" ? "active" : ""}`}>
+                  <Link to={`${PATHS.BLOG}`} onClick={() => closeModalMobile()}>
+                    Blog
+                  </Link>
+                </li> */}
+                <li className={`${pathname == "/contact" ? "active" : ""}`}>
+                  <Link
+                    to={`${PATHS.CONTACT}`}
+                    onClick={() => closeModalMobile()}
+                  >
+                    Contact Us
+                  </Link>
                 </li>
               </ul>
             </nav>
@@ -88,23 +124,22 @@ const MenuMobile = () => {
           >
             <nav className="mobile-cats-nav">
               <ul className="mobile-cats-menu">
-                <li>
-                  <a className="mobile-cats-lead" href="#">
-                    TV
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Computers</a>
-                </li>
-                <li>
-                  <a href="#">Tablets &amp; Cell Phones</a>
-                </li>
-                <li>
-                  <a href="#">Smartwatches</a>
-                </li>
-                <li>
-                  <a href="#">Accessories</a>
-                </li>
+                {categorise &&
+                  categorise?.map((item, index) => (
+                    <li key={index}>
+                      <Link
+                        to={`${PATHS.PRODUCT}?category=${item?.id}&limit=9&page=1`}
+                        className={`${
+                          queryObject["category"] == item?.id
+                            ? "mobile-cats-lead"
+                            : ""
+                        }`}
+                        onClick={() => closeModalMobile()}
+                      >
+                        {item?.name}
+                      </Link>
+                    </li>
+                  ))}
               </ul>
               {/* End .mobile-cats-menu */}
             </nav>
@@ -113,19 +148,20 @@ const MenuMobile = () => {
           {/* .End .tab-pane */}
         </div>
         {/* End .tab-content */}
+
         <div className="social-icons">
-          <a href="#" className="social-icon" target="_blank" title="Facebook">
+          <ShareLink title={"Facebook"} path={pathUrl}>
             <i className="icon-facebook-f" />
-          </a>
-          <a href="#" className="social-icon" target="_blank" title="Twitter">
+          </ShareLink>
+          <ShareLink type="twitter" title={"Twitter"} path={pathUrl}>
             <i className="icon-twitter" />
-          </a>
-          <a href="#" className="social-icon" target="_blank" title="Instagram">
+          </ShareLink>
+          <ShareLink type="instagram" title={"Instagram"} path={pathUrl}>
             <i className="icon-instagram" />
-          </a>
-          <a href="#" className="social-icon" target="_blank" title="Youtube">
-            <i className="icon-youtube" />
-          </a>
+          </ShareLink>
+          <ShareLink type="pinterest" title={"Pinterest"} path={pathUrl}>
+            <i className="icon-pinterest" />
+          </ShareLink>
         </div>
         {/* End .social-icons */}
       </div>

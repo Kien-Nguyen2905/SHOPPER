@@ -17,7 +17,6 @@ import { getCart } from "@/store/middleware/cartMiddleware";
 const MainLayout = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
-
   useEffect(() => {
     const timer = setTimeout(() => {
       libFunc();

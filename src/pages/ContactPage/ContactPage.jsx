@@ -3,7 +3,7 @@ import Nav from "@/components/Nav/Nav";
 import PageContainer from "@/components/PageContainer/PageContainer";
 import { PATHS } from "@/constants/pathname";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Information from "./Components/Information";
 import Map from "./Components/Map";
 import OurStore from "./Components/OurStore";

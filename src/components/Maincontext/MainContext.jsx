@@ -8,6 +8,8 @@ import { createContext } from "react";
 const MainContext = createContext();
 export const MainProvider = ({ children }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenModalMb, setIsOpenModalMb] = useState(false);
+  const [isOpenSearch, setIsOpenSearch] = useState(false);
   const [authenForm, setAuthenForm] = useState(AUTHEN_TYPE.login);
   const [category, setCategory] = useState();
   useEffect(() => {
@@ -26,6 +28,14 @@ export const MainProvider = ({ children }) => {
     document.body.className = "";
     document.body.style = "";
   };
+  const openModalMobile = () => {
+    document.body.className = "mmenu-active";
+    setIsOpenModalMb(!isOpenModalMb);
+  };
+  const closeModalMobile = () => {
+    setIsOpenModalMb(!isOpenModalMb);
+    document.body.className = "";
+  };
   const getCategory = (e) => {
     setCategory(e?.currentTarget.textContent);
   };
@@ -39,6 +49,12 @@ export const MainProvider = ({ children }) => {
     category,
     setCategory,
     getCategory,
+    openModal,
+    openModalMobile,
+    closeModalMobile,
+    isOpenModalMb,
+    isOpenSearch,
+    setIsOpenSearch,
   };
   return <MainContext.Provider value={value}>{children}</MainContext.Provider>;
 };

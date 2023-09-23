@@ -51,7 +51,7 @@ const DealProduct = ({ list }) => {
               <div className="row">
                 {listDeal?.length > 0 &&
                   listDeal?.map((item, index) => (
-                    <div className="col-6">
+                    <div className="col-6" key={index}>
                       <ProductCart key={index} item={item}></ProductCart>
                     </div>
                   ))}

@@ -1,7 +1,16 @@
 import React from "react";
+import { useMainContext } from "../Maincontext/MainContext";
 
 const MenuMobileOverlay = () => {
-  return <div className="mobile-menu-overlay"></div>;
+  const { closeModalMobile } = useMainContext();
+  return (
+    <div
+      className="mobile-menu-overlay"
+      onClick={() => {
+        closeModalMobile();
+      }}
+    ></div>
+  );
 };
 
 export default MenuMobileOverlay;

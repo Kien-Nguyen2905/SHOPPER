@@ -8,28 +8,28 @@ export const libFunc = () => {
 
     // Header Search Toggle
 
-    var $searchWrapper = $(".header-search-wrapper"),
-      $body = $("body"),
-      $searchToggle = $(".search-toggle");
+    // var $searchWrapper = $(".header-search-wrapper"),
+    //   $body = $("body"),
+    //   $searchToggle = $(".search-toggle");
 
-    $searchToggle.on("click", function (e) {
-      $searchWrapper.toggleClass("show");
-      $(this).toggleClass("active");
-      $searchWrapper.find("input").focus();
-      e.preventDefault();
-    });
+    // $searchToggle.on("click", function (e) {
+    //   $searchWrapper.toggleClass("show");
+    //   $(this).toggleClass("active");
+    //   $searchWrapper.find("input").focus();
+    //   e.preventDefault();
+    // });
 
-    $body.on("click", function (e) {
-      if ($searchWrapper.hasClass("show")) {
-        $searchWrapper.removeClass("show");
-        $searchToggle.removeClass("active");
-        $body.removeClass("is-search-active");
-      }
-    });
+    // $body.on("click", function (e) {
+    //   if ($searchWrapper.hasClass("show")) {
+    //     $searchWrapper.removeClass("show");
+    //     $searchToggle.removeClass("active");
+    //     $body.removeClass("is-search-active");
+    //   }
+    // });
 
-    $(".header-search").on("click", function (e) {
-      e.stopPropagation();
-    });
+    // $(".header-search").on("click", function (e) {
+    //   e.stopPropagation();
+    // });
 
     // Sticky header
     var catDropdown = $(".category-dropdown"),
@@ -76,30 +76,30 @@ export const libFunc = () => {
     }
 
     // Mobile Menu Toggle - Show & Hide
-    $(".mobile-menu-toggler").on("click", function (e) {
-      $body.toggleClass("mmenu-active");
-      $(this).toggleClass("active");
-      e.preventDefault();
-    });
+    // $(".mobile-menu-toggler").on("click", function (e) {
+    //   $body.toggleClass("mmenu-active");
+    //   $(this).toggleClass("active");
+    //   e.preventDefault();
+    // });
 
-    $(".mobile-menu-overlay, .mobile-menu-close").on("click", function (e) {
-      $body.removeClass("mmenu-active");
-      $(".menu-toggler").removeClass("active");
-      e.preventDefault();
-    });
+    // $(".mobile-menu-overlay, .mobile-menu-close").on("click", function (e) {
+    //   $body.removeClass("mmenu-active");
+    //   $(".menu-toggler").removeClass("active");
+    //   e.preventDefault();
+    // });
 
-    // Add Mobile menu icon arrows to items with children
-    $(".mobile-menu")
-      .find("li")
-      .each(function () {
-        var $this = $(this);
+    // // Add Mobile menu icon arrows to items with children
+    // $(".mobile-menu")
+    //   .find("li")
+    //   .each(function () {
+    //     var $this = $(this);
 
-        if ($this.find("ul").length) {
-          $("<span/>", {
-            class: "mmenu-btn",
-          }).appendTo($this.children("a"));
-        }
-      });
+    //     if ($this.find("ul").length) {
+    //       $("<span/>", {
+    //         class: "mmenu-btn",
+    //       }).appendTo($this.children("a"));
+    //     }
+    //   });
 
     // Mobile Menu toggle children menu
     $(".mmenu-btn").on("click", function (e) {
