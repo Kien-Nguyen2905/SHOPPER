@@ -3,11 +3,13 @@ import { checkAuthen } from "@/constants/checkAuthen";
 import { THUNK_STATUS } from "@/constants/general";
 import { useMutation } from "@/hooks/useMutation";
 import { useQuery } from "@/hooks/useQuery";
+import { orderService } from "@/services/orderService";
 import { productService } from "@/services/productService";
 import { wishlistService } from "@/services/wishlistService";
 import { profileUser } from "@/store/middleware/authMiddleware";
 import { updateCart } from "@/store/middleware/cartMiddleware";
 import { message } from "antd";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -96,11 +98,20 @@ export const useProductDetail = () => {
       }
     }
   };
+  const { data: productDetailReviews, refetch: refetchReviews } = useQuery(
+    orderService.getReviewFollowProduct
+  );
+  useEffect(() => {
+    if (dataProductDetail?.id) {
+      refetchReviews?.(dataProductDetail?.id);
+    }
+  }, [dataProductDetail]);
   return {
     data: dataProductDetail,
     loading: loadingProductDetail,
     err: errorProductDetail,
     formDetailData: productDetailForm,
+    productDetailReviews,
     onAdd,
     onWishList,
   };

@@ -49,7 +49,7 @@ const Register = ({ activeTab, onRegister }) => {
           </div>
         </div>
       </form>
-      <div className="form-choice">
+      {/* <div className="form-choice">
         <p className="text-center">or sign in with</p>
         <div className="row">
           <div className="col-sm-6">
@@ -65,7 +65,7 @@ const Register = ({ activeTab, onRegister }) => {
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

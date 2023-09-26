@@ -55,12 +55,12 @@ const Login = ({ activeTab, onLogin }) => {
               label="Remember Me "
             ></Checkbox>
           </div>
-          <a href="#" className="forgot-link">
+          {/* <a href="#" className="forgot-link">
             Forgot Your Password?
-          </a>
+          </a> */}
         </div>
       </form>
-      <div className="form-choice">
+      {/* <div className="form-choice">
         <p className="text-center">or sign in with</p>
         <div className="row">
           <div className="col-sm-6">
@@ -69,17 +69,15 @@ const Login = ({ activeTab, onLogin }) => {
               Login With Google
             </a>
           </div>
-          {/* End .col-6 */}
+
           <div className="col-sm-6">
             <a href="#" className="btn btn-login btn-f">
               <i className="icon-facebook-f" />
               Login With Facebook
             </a>
           </div>
-          {/* End .col-6 */}
         </div>
-        {/* End .row */}
-      </div>
+      </div> */}
     </div>
   );
 };
