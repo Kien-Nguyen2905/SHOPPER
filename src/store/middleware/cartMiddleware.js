@@ -32,7 +32,6 @@ export const addToCart = createAsyncThunk(
   "cart/add",
   async (actionPayload, thunkAPI) => {
     const currentCart = thunkAPI.getState()?.cart?.cartInfo || {};
-    console.log(currentCart);
     try {
       let addPayload = {};
       if (currentCart.id) {
@@ -56,7 +55,6 @@ export const addToCart = createAsyncThunk(
           product: newProductPayload,
           quantity: newQuantityPayload,
         };
-        console.log(addPayload);
       } else {
         addPayload = {
           product: [actionPayload],

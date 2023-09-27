@@ -4,7 +4,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const DealProduct = ({ list }) => {
-  console.log(list);
   let listDeal = [list[0], list[1]];
   return (
     <div className="bg-light deal-container pt-7 pb-7 mb-5">

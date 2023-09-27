@@ -35,7 +35,6 @@ const HeaderMiddle = ({
       },
     });
   };
-  console.log(isOpenModalMb);
   return (
     <div className="header-middle sticky-header">
       <div className="container">

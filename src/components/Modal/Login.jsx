@@ -15,6 +15,7 @@ const Login = ({ activeTab, onLogin }) => {
     },
   });
   const handleLogin = (values) => {
+    console.log(values);
     onLogin?.(values);
   };
   return (

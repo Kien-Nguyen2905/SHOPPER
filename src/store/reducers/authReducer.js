@@ -20,9 +20,4 @@ export const { reducer: authReducer, actions: authActions } = createSlice({
       state.listOrder = action.payload;
     },
   },
-  // extraReducers: (builder) => {
-  //   builder.addCase(profileUser.fulfilled, (state, action) => {
-  //     state.profile = action.payload;
-  //   });
-  // },
 });

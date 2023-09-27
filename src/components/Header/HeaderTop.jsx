@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const HeaderTop = ({ openModal, profile, onLogout, list }) => {
+  console.log(profile?.firstName);
   return (
     <div className="header-top">
       <div className="container">
@@ -17,7 +18,7 @@ const HeaderTop = ({ openModal, profile, onLogout, list }) => {
               <li>
                 <a className="top-link-menu">
                   <i className="icon-user"></i>
-                  {profile?.firstName || "Guest"}
+                  {profile?.firstName !== "" ? "Guest" : profile?.firstName}
                 </a>
                 <ul>
                   <li>
