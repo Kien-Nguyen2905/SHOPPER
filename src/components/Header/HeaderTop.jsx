@@ -18,7 +18,7 @@ const HeaderTop = ({ openModal, profile, onLogout, list }) => {
               <li>
                 <a className="top-link-menu">
                   <i className="icon-user"></i>
-                  {profile?.firstName !== "" ? "Guest" : profile?.firstName}
+                  {!profile?.firstName ? "Guest" : profile?.firstName}
                 </a>
                 <ul>
                   <li>

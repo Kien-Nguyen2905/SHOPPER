@@ -34,7 +34,13 @@ const Register = ({ activeTab, onRegister }) => {
           />
         </div>
         <div className="form-group">
-          <Input control={control} label="Password" name="password" required />
+          <Input
+            control={control}
+            type="password"
+            label="Password"
+            name="password"
+            required
+          />
         </div>
         <div className="form-footer">
           <Button className="btn-outline-primary-2">
