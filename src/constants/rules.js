@@ -8,6 +8,10 @@ export const rules = {
   },
   password: {
     required: { value: true, message: "Please enter your password" },
+    pattern: {
+      value: /^.{6,}$/,
+      message: "Password must be 6 characters or more",
+    },
   },
   agree: {
     required: {
