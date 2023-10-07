@@ -60,8 +60,12 @@ const useModal = () => {
           });
         }
       } catch (error) {
+        if (error.response.status === 403 || error.response.data.message) {
+          message.error("Email is already registered");
+        } else {
+          message.error("Somthing wrong, please try again ! ");
+        }
         console.log(error);
-        message.error("Somthing wrong, please try again ! ");
       }
     }
   };
