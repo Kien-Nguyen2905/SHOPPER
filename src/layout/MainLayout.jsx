@@ -20,6 +20,7 @@ const MainLayout = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       libFunc();
+      setIsLoading(false);
     }, 500);
     document.body.scrollIntoView({ behavior: "smooth", block: "start" });
     return () => clearTimeout(timer);

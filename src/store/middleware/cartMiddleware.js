@@ -1,5 +1,6 @@
 import { cartService } from "@/services/cartService";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+
 export const getCart = createAsyncThunk("cart/get", async (_, thunkAPI) => {
   try {
     const res = await cartService.getCart();
