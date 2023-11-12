@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 const AccountAddress = () => {
   const { profile } = useSelector((store) => store.auth);
-  console.log(profile);
   return (
     <div className="tab-pane fade active show">
       <p>
@@ -22,7 +21,7 @@ const AccountAddress = () => {
                 <strong>Email:</strong> {profile?.email} <br />
                 <strong>Phone number:</strong> {profile?.phone} <br />
                 <br />
-                <Link to="/profile">
+                <Link to={PATHS.DASHBOARD.INDEX}>
                   Edit <i className="icon-edit" />
                 </Link>
               </p>

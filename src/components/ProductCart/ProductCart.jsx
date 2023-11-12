@@ -11,6 +11,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useMainContext } from "../Maincontext/MainContext";
+import { profileUser } from "@/store/middleware/authMiddleware";
 
 const ProductCart = ({ item }) => {
   const { openModal } = useMainContext();
@@ -19,6 +20,7 @@ const ProductCart = ({ item }) => {
   const { execute } = useMutation(wishlistService.addList, {
     onSuccess: (data) => {
       console.log(data);
+      dispatch(profileUser());
       message.success("Successfully");
     },
     onFail: (error) => {

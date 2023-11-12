@@ -3,7 +3,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const HeaderTop = ({ openModal, profile, onLogout, list }) => {
-  console.log(profile?.firstName);
   return (
     <div className="header-top">
       <div className="container">

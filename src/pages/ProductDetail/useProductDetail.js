@@ -17,7 +17,7 @@ import { useParams } from "react-router-dom";
 export const useProductDetail = () => {
   const { slug } = useParams();
   const dispatch = useDispatch();
-  const { openAuthenModal } = useMainContext();
+  const { openModal } = useMainContext();
   const { cartInfo, updateStatus } = useSelector((state) => state.cart);
   const { execute } = useMutation(wishlistService.addList, {
     onSuccess: (data) => {
@@ -32,6 +32,7 @@ export const useProductDetail = () => {
   });
   const onWishList = (idProduct) => {
     execute({ product: idProduct });
+    dispatch(profileUser());
   };
   const productDetailForm = useForm({
     defaultValues: {
@@ -45,7 +46,7 @@ export const useProductDetail = () => {
   } = useQuery(() => productService.getProductsDetail(slug), [slug]);
   const onAdd = async (updateValue, idDetail) => {
     if (!checkAuthen) {
-      openAuthenModal();
+      openModal();
     } else if (idDetail && updateStatus !== THUNK_STATUS.pending) {
       try {
         let addPayload = {};
@@ -103,6 +104,7 @@ export const useProductDetail = () => {
   );
   useEffect(() => {
     if (dataProductDetail?.id) {
+      console.log(dataProductDetail);
       refetchReviews?.(dataProductDetail?.id);
     }
   }, [dataProductDetail]);

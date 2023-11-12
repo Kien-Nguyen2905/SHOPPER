@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { PATHS } from "../../constants/pathname";
 
 const Footer = () => {
@@ -69,18 +69,22 @@ const Footer = () => {
                 <h4 className="widget-title">My Account</h4>
                 <ul className="widget-list">
                   <li>
-                    <NavLink to={PATHS.DASHBOARD.INDEX}>
+                    <Link to={PATHS.DASHBOARD.INDEX} exact>
                       Account Details
-                    </NavLink>
+                    </Link>
                   </li>
                   <li>
-                    <NavLink to={PATHS.CART}>View Cart</NavLink>
+                    <Link to={PATHS.CART}>View Cart</Link>
                   </li>
                   <li>
-                    <NavLink to={PATHS.DASHBOARD.WISHLIST}>My Wishlist</NavLink>
+                    <Link to={PATHS.DASHBOARD.WISHLIST} exact>
+                      My Wishlist
+                    </Link>
                   </li>
                   <li>
-                    <NavLink to={PATHS.DASHBOARD.ORDER}>Track My Order</NavLink>
+                    <Link to={PATHS.DASHBOARD.ORDER} exact>
+                      Track My Order
+                    </Link>
                   </li>
                 </ul>
               </div>

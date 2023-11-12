@@ -1,11 +1,14 @@
 import Button from "@/components/Button/Button";
 import { THUNK_STATUS } from "@/constants/general";
+import { PATHS } from "@/constants/pathname";
+import { profileUser } from "@/store/middleware/authMiddleware";
 import { addToCart } from "@/store/middleware/cartMiddleware";
 import { convertPrice } from "@/utils/covertPrice";
-import { message } from "antd";
+import { Modal, message } from "antd";
+import axios from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { Link } from "react-router-dom";
 const AccountWishlist = () => {
   const { profile } = useSelector((state) => state.auth);
   const { updateStatus } = useSelector((state) => state.cart);
@@ -23,6 +26,49 @@ const AccountWishlist = () => {
         message.error("Failed");
       }
     }
+  };
+  console.log(profile);
+  const { confirm } = Modal;
+  const deleteFromWhiteList = async (productId) => {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const response = await axios.delete(
+        "https://cfdshop.cfdcircle.vn/api/v1/customer/white-list",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+          data: {
+            product: productId,
+          },
+        }
+      );
+      if (response?.data?.data) {
+        dispatch(profileUser());
+      }
+    } catch (error) {
+      console.error("Delete error:", error);
+    }
+  };
+  const removeItem = (item) => {
+    console.log(item?.id);
+    confirm({
+      title: "Do you want remove this item from whitelist?",
+      content: (
+        <>
+          <p>{`${item?.name || ""}`}</p>
+          <p>{`$${item?.price}`}</p>
+        </>
+      ),
+      onOk() {
+        deleteFromWhiteList(item?.id);
+        message.success("Successfully");
+      },
+      onCancel() {
+        console.log("Cancel");
+      },
+    });
   };
   return (
     <div
@@ -48,12 +94,14 @@ const AccountWishlist = () => {
                 <td className="product-col">
                   <div className="product">
                     <figure className="product-media">
-                      <a href="#">
+                      <Link to={PATHS.PRODUCT + "/" + item?.slug}>
                         <img src={item?.images?.[0]} alt="Product image" />
-                      </a>
+                      </Link>
                     </figure>
                     <h3 className="product-title">
-                      <a href="#">{item?.name}</a>
+                      <Link to={PATHS.PRODUCT + "/" + item?.slug}>
+                        {item?.name}{" "}
+                      </Link>
                     </h3>
                   </div>
                 </td>
@@ -78,7 +126,10 @@ const AccountWishlist = () => {
                   </Button>
                 </td>
                 <td className="remove-col">
-                  <button className="btn-remove">
+                  <button
+                    className="btn-remove"
+                    onClick={() => removeItem(item)}
+                  >
                     <i className="icon-close" />
                   </button>
                 </td>

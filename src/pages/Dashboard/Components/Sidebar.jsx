@@ -1,8 +1,16 @@
 import { PATHS } from "@/constants/pathname";
+import { authActions } from "@/store/reducers/authReducer";
+import { cartActions } from "@/store/reducers/cartReducer";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+  const onLogout = () => {
+    dispatch(authActions.logout());
+    dispatch(cartActions.clearCart());
+  };
   return (
     <aside className="col-md-4 col-lg-3">
       <ul className="nav nav-dashboard flex-column mb-3 mb-md-0">
@@ -27,7 +35,11 @@ const Sidebar = () => {
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink to="/" className="nav-link">
+          <NavLink
+            to={PATHS.HOME}
+            onClick={() => onLogout()}
+            className="nav-link"
+          >
             Sign Out
           </NavLink>
         </li>

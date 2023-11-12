@@ -9,7 +9,7 @@ export const getCart = createAsyncThunk("cart/get", async (_, thunkAPI) => {
     }, 0);
     const total =
       subTotal -
-        subTotal * ((res.discount || 0) / 100) -
+        subTotal * ((res.discount || 0) / 100) +
         (res.shipping?.price || 0) || 0;
 
     const totalProduct =
