@@ -7,8 +7,8 @@ import { convertPrice } from "@/utils/covertPrice";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useProductDetail } from "./useProductDetail";
-import Tab from "@/components/Tab/Tab";
 import ProductReview from "./ProductReview";
+import Tab from "@/components/Tab/Tab";
 
 const ProductDetail = () => {
   const pathUrl = window.location.href;
@@ -21,7 +21,6 @@ const ProductDetail = () => {
     onWishList,
     productDetailReviews,
   } = useProductDetail();
-  console.log(productDetailReviews);
   const {
     category,
     id,
