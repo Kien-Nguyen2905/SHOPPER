@@ -1,4 +1,3 @@
-import { cn } from "@/constants/cn";
 import React, { createContext, useContext, useState } from "react";
 
 const TabContext = createContext({});
@@ -26,57 +25,56 @@ const TabHeader = ({ children }) => {
   return (
     <ul className="nav nav-pills justify-content-center">
       {React.Children.map(children, (child, index) => {
-        if (child?.type?.name === "TabHeaderItem") {
+        if (child && child.type.name === "TabHeaderItem") {
           return React.cloneElement(child, {
-            isActive: activeIndex == index,
+            isActive: activeIndex === index,
             onClick: () => {
               onChangeTab(index);
             },
           });
         }
+        return null;
       })}
     </ul>
   );
 };
+
 const TabHeaderItem = ({ isActive, onClick, children }) => {
   return (
     <li onClick={onClick} className="nav-item">
       <a
-        className={cn(`nav-link`, { active: isActive })}
-        id="product-desc-link"
-        data-toggle="tab"
-        href="#product-desc-tab"
+        className={`nav-link ${isActive ? "active" : ""}`}
         role="tab"
-        aria-controls="product-desc-tab"
-        aria-selected="true"
+        aria-selected={isActive}
       >
         {children}
       </a>
     </li>
   );
 };
+
 const TabContent = ({ children }) => {
   const { activeIndex } = useContext(TabContext);
 
   return (
     <div className="tab-content">
       {React.Children.map(children, (child, index) => {
-        if (child?.type?.name === "TabContentItem") {
+        if (child && child.type.name === "TabContentItem") {
           return React.cloneElement(child, {
-            isActive: activeIndex == index,
+            isActive: activeIndex === index,
           });
         }
+        return null;
       })}
     </div>
   );
 };
+
 const TabContentItem = ({ isActive, children }) => {
   return (
     <div
-      className={cn("tab-pane fade show", { active: isActive })}
-      id="product-desc-tab"
+      className={`tab-pane fade show ${isActive ? "active" : ""}`}
       role="tabpanel"
-      aria-labelledby="product-desc-link"
     >
       {children}
     </div>

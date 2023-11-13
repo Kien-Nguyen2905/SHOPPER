@@ -7,7 +7,10 @@ const ViewImageZoom = ({ images }) => {
     if (!!images?.length) {
       libFunc();
     }
-    return () => {};
+    return () => {
+      const elementDom = document.querySelector(".zoomContainer");
+      elementDom?.remove();
+    };
   }, [JSON.stringify(images)]);
   return (
     <div className="product-gallery product-gallery-vertical">

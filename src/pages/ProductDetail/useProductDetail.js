@@ -105,7 +105,6 @@ export const useProductDetail = () => {
   );
   useEffect(() => {
     if (dataProductDetail?.id) {
-      console.log(dataProductDetail);
       refetchReviews?.(dataProductDetail?.id);
     }
   }, [dataProductDetail]);
