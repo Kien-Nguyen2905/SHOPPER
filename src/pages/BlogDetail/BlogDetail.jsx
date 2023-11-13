@@ -28,7 +28,7 @@ const BlogDetail = () => {
               <a href="#">Blog</a>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
-              Sed adipiscing ornare risus.
+              {dataDetail?.name}
             </li>
           </ol>
         </div>
