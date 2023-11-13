@@ -51,7 +51,6 @@ export const useBlogPage = () => {
   }, [search]);
   const blogList = data;
   const pagiBlogs = data?.pagination;
-  console.log(pagiBlogs);
   const blogListSB = blogList?.blogs?.slice(0, 3);
   const pagiProps = {
     page: +pagiBlogs?.page || +queryObject?.page || 1,
@@ -67,6 +66,7 @@ export const useBlogPage = () => {
     onSearch,
     searchBlog,
   };
+  const isLoadingBlog = useDebounce(loadingBlog, 1500);
   //   console.log(pagiProps);
-  return { blogList, loadingBlog, sideBarProp, pagiProps };
+  return { blogList, isLoadingBlog, sideBarProp, pagiProps };
 };

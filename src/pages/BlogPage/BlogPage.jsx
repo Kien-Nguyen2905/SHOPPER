@@ -1,12 +1,14 @@
 import React from "react";
 import { useBlogPage } from "./useBlogPage";
-import BlogItem from "./BlogItem";
 import SidebarBlog from "@/components/SidebarBlog/SidebarBlog";
-import Pagination from "@/components/Pagination/Pagination";
+import BlogList from "./Components/BlogList";
+import Nav from "@/components/Nav/Nav";
+import { PATHS } from "@/constants/pathname";
+import { Link } from "react-router-dom";
 
 const BlogPage = () => {
-  const { blogList, sideBarProp, pagiProps } = useBlogPage();
-  console.log(blogList);
+  const { blogList, isLoadingBlog, sideBarProp, pagiProps } = useBlogPage();
+
   return (
     <main className="main">
       <div
@@ -19,32 +21,20 @@ const BlogPage = () => {
           <h1 className="page-title">Blog</h1>
         </div>
       </div>
-      <nav aria-label="breadcrumb" className="breadcrumb-nav mb-3">
-        <div className="container">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <a href="index.html">Home</a>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Blog
-            </li>
-          </ol>
-        </div>
-      </nav>
+      <Nav>
+        <Nav.Item>
+          <Link to={PATHS.HOME}>Home</Link>
+        </Nav.Item>
+        <Nav.Item isActive>Blog</Nav.Item>
+      </Nav>
       <div className="page-content">
         <div className="container">
           <div className="row">
-            <div className="col-lg-9">
-              <div className="entry-container max-col-2" data-layout="fitRows">
-                {blogList?.blogs?.length > 0 &&
-                  blogList?.blogs?.map((item, index) => (
-                    <div className="entry-item col-sm-6">
-                      <BlogItem key={index} data={item} />
-                    </div>
-                  ))}
-              </div>
-              <Pagination {...pagiProps} />
-            </div>
+            <BlogList
+              blogList={blogList}
+              loading={isLoadingBlog}
+              pani={pagiProps}
+            />
             <SidebarBlog {...sideBarProp} />
           </div>
         </div>

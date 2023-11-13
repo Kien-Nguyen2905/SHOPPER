@@ -6,6 +6,9 @@ import { useBlogPage } from "../BlogPage/useBlogPage";
 import OwlCarousel from "react-owl-carousel";
 import BlogItem from "../BlogPage/BlogItem";
 import ShareLink from "@/components/ShareLink/ShareLink";
+import Nav from "@/components/Nav/Nav";
+import { Link } from "react-router-dom";
+import { PATHS } from "@/constants/pathname";
 
 const BlogDetail = () => {
   const pathUrl = window.location.href;
@@ -14,25 +17,18 @@ const BlogDetail = () => {
   useEffect(() => {
     listRelate(dataDetail?.category?.id);
   }, [dataDetail?.category?.id]);
-  console.log(relatedBlog);
   if (!dataDetail?.updatedAt) return;
   return (
     <main className="main">
-      <nav aria-label="breadcrumb" className="breadcrumb-nav border-0 mb-0">
-        <div className="container">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <a href="index.html">Home</a>
-            </li>
-            <li className="breadcrumb-item">
-              <a href="#">Blog</a>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              {dataDetail?.name}
-            </li>
-          </ol>
-        </div>
-      </nav>
+      <Nav>
+        <Nav.Item>
+          <Link to={PATHS.HOME}>Home</Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Link to={PATHS.BLOG}>Blog</Link>
+        </Nav.Item>
+        <Nav.Item>{dataDetail?.name}</Nav.Item>
+      </Nav>
       <div className="page-content">
         <div className="container">
           <div className="row">

@@ -35,7 +35,6 @@ const OrderList = ({ list }) => {
         style: panelStyle,
       };
     });
-  console.log(list);
   return (
     <div className="order">
       <h2>My list ordered:</h2>

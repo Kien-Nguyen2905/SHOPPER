@@ -16,7 +16,6 @@ export const useBlogDetail = () => {
   };
   const listRelate = async (idCate) => {
     if (!idCate) return;
-    console.log(idCate);
     try {
       const repon = await blogService.getRelatedBlog(idCate);
       setRelatedBlog(repon?.blogs);
