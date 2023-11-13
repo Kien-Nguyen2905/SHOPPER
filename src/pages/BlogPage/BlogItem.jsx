@@ -19,7 +19,7 @@ const BlogItem = ({ data }) => {
           </span>
         </div>
         <h2 className="entry-title">
-          <a href="blog-single.html">{data?.name}</a>
+          <Link to={PATHS.BLOG + `/${data?.slug}`}>{data?.name}</Link>
         </h2>
         <div className="entry-content">
           <Link to={PATHS.BLOG + `/${data?.slug}`} className="read-more">

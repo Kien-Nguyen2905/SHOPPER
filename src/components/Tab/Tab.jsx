@@ -24,9 +24,9 @@ const TabHeader = ({ children }) => {
   const { activeIndex, onChangeTab } = useContext(TabContext);
 
   return (
-    <ul className="nav nav-pills justify-content-center" role="tablist">
+    <ul className="nav nav-pills justify-content-center">
       {React.Children.map(children, (child, index) => {
-        if (child?.type.name === "TabHeaderItem") {
+        if (child?.type?.name === "TabHeaderItem") {
           return React.cloneElement(child, {
             isActive: activeIndex == index,
             onClick: () => {
@@ -61,7 +61,7 @@ const TabContent = ({ children }) => {
   return (
     <div className="tab-content">
       {React.Children.map(children, (child, index) => {
-        if (child?.type.name === "TabContentItem") {
+        if (child?.type?.name === "TabContentItem") {
           return React.cloneElement(child, {
             isActive: activeIndex == index,
           });
