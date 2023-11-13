@@ -9,15 +9,18 @@ import ShareLink from "@/components/ShareLink/ShareLink";
 import Nav from "@/components/Nav/Nav";
 import { Link } from "react-router-dom";
 import { PATHS } from "@/constants/pathname";
+import Loading from "@/components/Loading/Loading";
 
 const BlogDetail = () => {
   const pathUrl = window.location.href;
-  const { dataDetail, getTag, listRelate, relatedBlog } = useBlogDetail();
+  const { dataDetail, getTag, listRelate, relatedBlog, isLoadingDetail } =
+    useBlogDetail();
   const { sideBarProp } = useBlogPage();
   useEffect(() => {
     listRelate(dataDetail?.category?.id);
   }, [dataDetail?.category?.id]);
   if (!dataDetail?.updatedAt) return;
+  if (isLoadingDetail) return <Loading></Loading>;
   return (
     <main className="main">
       <Nav>

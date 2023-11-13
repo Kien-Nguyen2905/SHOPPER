@@ -1,3 +1,4 @@
+import useDebounce from "@/hooks/useDebounce";
 import { useQuery } from "@/hooks/useQuery";
 import { blogService } from "@/services/blogService";
 import { useState } from "react";
@@ -7,7 +8,7 @@ export const useBlogDetail = () => {
   const { slug } = useParams();
   const [relatedBlog, setRelatedBlog] = useState();
   const { data: dataTag } = useQuery(blogService.getTag);
-  const { data: dataDetail } = useQuery(
+  const { data: dataDetail, loading: loadingDetail } = useQuery(
     () => blogService.getBlogDetail(slug),
     [slug]
   );
@@ -23,5 +24,6 @@ export const useBlogDetail = () => {
       console.log(error);
     }
   };
-  return { dataDetail, getTag, listRelate, relatedBlog };
+  const isLoadingDetail = useDebounce(loadingDetail, 500);
+  return { dataDetail, getTag, listRelate, relatedBlog, isLoadingDetail };
 };
