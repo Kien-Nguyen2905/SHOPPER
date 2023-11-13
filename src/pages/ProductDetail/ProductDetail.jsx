@@ -388,7 +388,7 @@ const ProductDetail = () => {
                 />
               </Tab.ContentItem>
               <Tab.ContentItem>
-                <ProductReview reviews={productDetailReviews} />
+                <ProductReview reviews={productDetailReviews?.reverse()} />
               </Tab.ContentItem>
             </Tab.Content>
           </Tab>

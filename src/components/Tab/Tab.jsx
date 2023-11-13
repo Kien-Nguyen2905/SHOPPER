@@ -23,9 +23,9 @@ const TabHeader = ({ children }) => {
   const { activeIndex, onChangeTab } = useContext(TabContext);
 
   return (
-    <ul className="nav nav-pills justify-content-center">
+    <ul className="nav nav-pills justify-content-center" role="tablist">
       {React.Children.map(children, (child, index) => {
-        if (child && child.type.name === "TabHeaderItem") {
+        if (child && child.type === TabHeaderItem) {
           return React.cloneElement(child, {
             isActive: activeIndex === index,
             onClick: () => {
@@ -45,7 +45,7 @@ const TabHeaderItem = ({ isActive, onClick, children }) => {
       <a
         className={`nav-link ${isActive ? "active" : ""}`}
         role="tab"
-        aria-selected={isActive}
+        aria-selected={isActive ? "true" : "false"}
       >
         {children}
       </a>
@@ -59,7 +59,7 @@ const TabContent = ({ children }) => {
   return (
     <div className="tab-content">
       {React.Children.map(children, (child, index) => {
-        if (child && child.type.name === "TabContentItem") {
+        if (child && child.type === TabContentItem) {
           return React.cloneElement(child, {
             isActive: activeIndex === index,
           });
