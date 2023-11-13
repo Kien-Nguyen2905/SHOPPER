@@ -160,8 +160,9 @@ export const useCheckout = () => {
       ) {
         const res = await dispatch(checkout(orderPayload)).unwrap();
         if (res) {
+          console.log(res);
           message.success("Succecssfully");
-          navigate(PATHS.CHECK_OUT_SUCCESS + `?id=${res?.id}`);
+          navigate(PATHS.CHECK_OUT_SUCCESS);
         } else {
           message.error("Failed");
         }

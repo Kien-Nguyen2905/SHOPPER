@@ -67,6 +67,11 @@ const HeaderMiddle = ({
               </NavLink>
             </li>
             <li>
+              <NavLink onClick={getCategory} to={PATHS.BLOG}>
+                Blog
+              </NavLink>
+            </li>
+            <li>
               <NavLink onClick={getCategory} to={PATHS.CONTACT}>
                 Contact Us
               </NavLink>

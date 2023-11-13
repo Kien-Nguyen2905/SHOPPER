@@ -25,8 +25,9 @@ const OrderList = ({ list }) => {
     borderRadius: token.borderRadiusLG,
     border: "none",
   };
+  const listOrder = [...list]?.reverse();
   const getItems = (panelStyle) =>
-    list?.map((item, index) => {
+    listOrder?.map((item, index) => {
       return {
         key: index,
         label: <OrderHeader id={item?.id} updatedAt={item?.updatedAt} />,

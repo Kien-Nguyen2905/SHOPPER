@@ -1,13 +1,13 @@
 import { Empty } from "antd";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { libFunc } from "@/assets/js/main";
 import { cn } from "@/constants/cn";
-
 const ViewImageZoom = ({ images }) => {
   useEffect(() => {
     if (!!images?.length) {
       libFunc();
     }
+    return () => {};
   }, [JSON.stringify(images)]);
   return (
     <div className="product-gallery product-gallery-vertical">

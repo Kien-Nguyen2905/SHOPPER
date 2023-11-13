@@ -7,6 +7,7 @@ import { useCheckout } from "./useCheckout";
 
 const CheckoutPage = () => {
   const { couponProps, billingProps, summaryProps } = useCheckout();
+
   return (
     <main className="main">
       <div
