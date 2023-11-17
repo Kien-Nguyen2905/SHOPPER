@@ -25,8 +25,9 @@ const OrderList = ({ list }) => {
     borderRadius: token.borderRadiusLG,
     border: "none",
   };
+  const listOrder = [...list]?.reverse();
   const getItems = (panelStyle) =>
-    list?.map((item, index) => {
+    listOrder?.map((item, index) => {
       return {
         key: index,
         label: <OrderHeader id={item?.id} updatedAt={item?.updatedAt} />,
@@ -34,7 +35,6 @@ const OrderList = ({ list }) => {
         style: panelStyle,
       };
     });
-  console.log(list);
   return (
     <div className="order">
       <h2>My list ordered:</h2>

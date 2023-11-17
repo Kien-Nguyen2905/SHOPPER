@@ -28,9 +28,10 @@ a.active {
 .col-sm-4 .form-control.customize .ant-select-selector {
   border: none;
   background: none;
+  box-shadow: none !important;
 }
 .form-control.customize .ant-select-selector:focus {
-  box-shadow: none;
+  box-shadow: none !important;
 }
 .form-control.customize .ant-select-selector .ant-select-selection-item {
   display: flex;

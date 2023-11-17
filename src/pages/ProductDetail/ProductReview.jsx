@@ -15,6 +15,7 @@ const ProductReview = ({ reviews }) => {
 };
 
 const ProductReviewItem = ({ name, rate, createdAt, title, description }) => {
+  console.log(transformNumberToPercent(rate));
   return (
     <div className="review">
       <div className="row no-gutters">

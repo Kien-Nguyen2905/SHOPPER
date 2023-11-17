@@ -22,7 +22,11 @@ const MainLayout = () => {
       libFunc();
     }, 500);
     document.body.scrollIntoView({ behavior: "smooth", block: "start" });
-    return () => clearTimeout(timer);
+    return () => {
+      const elementDom = document.querySelector(".zoomContainer");
+      elementDom?.remove();
+      clearTimeout(timer);
+    };
   }, [pathname]);
 
   useEffect(() => {

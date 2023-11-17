@@ -1,6 +1,7 @@
 import { useMainContext } from "@/components/Maincontext/MainContext";
 import { checkAuthen } from "@/constants/checkAuthen";
 import { THUNK_STATUS } from "@/constants/general";
+import { RVTAB } from "@/constants/review";
 import { useMutation } from "@/hooks/useMutation";
 import { useQuery } from "@/hooks/useQuery";
 import { orderService } from "@/services/orderService";
@@ -104,7 +105,6 @@ export const useProductDetail = () => {
   );
   useEffect(() => {
     if (dataProductDetail?.id) {
-      console.log(dataProductDetail);
       refetchReviews?.(dataProductDetail?.id);
     }
   }, [dataProductDetail]);

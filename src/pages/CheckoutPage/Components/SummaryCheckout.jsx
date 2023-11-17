@@ -3,6 +3,7 @@ import { cn } from "@/constants/cn";
 import { PAYMENT_METHOD } from "@/constants/general";
 import { PATHS } from "@/constants/pathname";
 import { convertPrice } from "@/utils/covertPrice";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const SummaryCheckout = ({
@@ -14,8 +15,11 @@ const SummaryCheckout = ({
   onUpdatePaymentMethod,
   onPlaceOrder,
 }) => {
+  const { cartInfo } = useSelector((state) => state.cart);
+  console.log(cartInfo);
   const isCash = paymentMethod === PAYMENT_METHOD.cash;
   const isCard = paymentMethod === PAYMENT_METHOD.card;
+  console.log(isCard);
   return (
     <aside className="col-lg-3">
       <div className="summary">

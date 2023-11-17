@@ -106,6 +106,7 @@ export const useCheckout = () => {
 
   useEffect(() => {
     if (Object.values(PAYMENT_METHOD).includes(cartInfo.paymentMethod)) {
+      console.log(cartInfo.paymentMethod);
       setCurrentPaymentMethod(cartInfo.paymentMethod);
     }
   }, [cartInfo.paymentMethod]);
@@ -161,7 +162,7 @@ export const useCheckout = () => {
         const res = await dispatch(checkout(orderPayload)).unwrap();
         if (res) {
           message.success("Succecssfully");
-          navigate(PATHS.CHECK_OUT_SUCCESS + `?id=${res?.id}`);
+          navigate(PATHS.CHECK_OUT_SUCCESS);
         } else {
           message.error("Failed");
         }
@@ -173,10 +174,12 @@ export const useCheckout = () => {
   };
 
   const onPlaceOrder = () => {
+    console.log(currenPaymentMethod);
     if (!!!cartInfo.shipping?.typeShip) {
-      message.error("Failed");
+      message.error("Please select type shipping in your order");
     } else if (!!!currenPaymentMethod) {
-      message.error("Failed");
+      console.log(currenPaymentMethod);
+      message.error("Please choose payment method");
     } else {
       const checkout = form.handleSubmit(handleCheckout);
       checkout();

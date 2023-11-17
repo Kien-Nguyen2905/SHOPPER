@@ -50,4 +50,7 @@ export const rules = {
   description: {
     required: { value: true, message: "Please enter description" },
   },
+  street: {
+    required: { value: true, message: "Please enter address" },
+  },
 };

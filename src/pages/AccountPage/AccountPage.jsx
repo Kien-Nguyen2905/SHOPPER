@@ -181,7 +181,9 @@ const AccountPage = () => {
                 <>
                   <label>Province/City *</label>
                   <Select
-                    style={{ padding: 0 }}
+                    style={{
+                      padding: 0,
+                    }}
                     showSearch
                     optionFilterProp="children"
                     filterOption={(input, option) =>
