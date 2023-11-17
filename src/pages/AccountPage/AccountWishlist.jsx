@@ -27,6 +27,7 @@ const AccountWishlist = () => {
       }
     }
   };
+  console.log(profile);
   const { confirm } = Modal;
   const deleteFromWhiteList = async (productId) => {
     try {
@@ -51,8 +52,9 @@ const AccountWishlist = () => {
     }
   };
   const removeItem = (item) => {
+    console.log(item?.id);
     confirm({
-      title: "Do you want remove this item from wishlist?",
+      title: "Do you want remove this item from whitelist?",
       content: (
         <>
           <p>{`${item?.name || ""}`}</p>

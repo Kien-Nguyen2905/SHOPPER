@@ -229,7 +229,7 @@ const BillingDetail = ({ form, profile }) => {
       <Input label="Street address" name="street" control={control} required />
       <Input
         className="sr-only"
-        name="note"
+        name="message"
         control={control}
         renderProp={(props, invalid, field) => (
           <>

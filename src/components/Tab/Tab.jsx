@@ -1,3 +1,4 @@
+import { cn } from "@/constants/cn";
 import React, { createContext, useContext, useState } from "react";
 
 const TabContext = createContext({});
@@ -25,56 +26,57 @@ const TabHeader = ({ children }) => {
   return (
     <ul className="nav nav-pills justify-content-center" role="tablist">
       {React.Children.map(children, (child, index) => {
-        if (child && child.type === TabHeaderItem) {
+        if (child?.type.name === "TabHeaderItem") {
           return React.cloneElement(child, {
-            isActive: activeIndex === index,
+            isActive: activeIndex == index,
             onClick: () => {
               onChangeTab(index);
             },
           });
         }
-        return null;
       })}
     </ul>
   );
 };
-
 const TabHeaderItem = ({ isActive, onClick, children }) => {
   return (
     <li onClick={onClick} className="nav-item">
       <a
-        className={`nav-link ${isActive ? "active" : ""}`}
+        className={cn(`nav-link`, { active: isActive })}
+        id="product-desc-link"
+        data-toggle="tab"
+        href="#product-desc-tab"
         role="tab"
-        aria-selected={isActive ? "true" : "false"}
+        aria-controls="product-desc-tab"
+        aria-selected="true"
       >
         {children}
       </a>
     </li>
   );
 };
-
 const TabContent = ({ children }) => {
   const { activeIndex } = useContext(TabContext);
 
   return (
     <div className="tab-content">
       {React.Children.map(children, (child, index) => {
-        if (child && child.type === TabContentItem) {
+        if (child?.type.name === "TabContentItem") {
           return React.cloneElement(child, {
-            isActive: activeIndex === index,
+            isActive: activeIndex == index,
           });
         }
-        return null;
       })}
     </div>
   );
 };
-
 const TabContentItem = ({ isActive, children }) => {
   return (
     <div
-      className={`tab-pane fade show ${isActive ? "active" : ""}`}
+      className={cn("tab-pane fade show", { active: isActive })}
+      id="product-desc-tab"
       role="tabpanel"
+      aria-labelledby="product-desc-link"
     >
       {children}
     </div>

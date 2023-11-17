@@ -1,16 +1,13 @@
 import { Empty } from "antd";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { libFunc } from "@/assets/js/main";
 import { cn } from "@/constants/cn";
+
 const ViewImageZoom = ({ images }) => {
   useEffect(() => {
     if (!!images?.length) {
       libFunc();
     }
-    return () => {
-      const elementDom = document.querySelector(".zoomContainer");
-      elementDom?.remove();
-    };
   }, [JSON.stringify(images)]);
   return (
     <div className="product-gallery product-gallery-vertical">

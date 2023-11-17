@@ -4,9 +4,7 @@ import { PATHS } from "./constants/pathname";
 import "./assets/css/index.css";
 
 import Loading from "./components/Loading/Loading";
-const AccountPage = lazy(() => import("./pages/AccountPage/AccountPage"));
-const BlogDetail = lazy(() => import("./pages/BlogDetail/BlogDetail"));
-const BlogPage = lazy(() => import("./pages/BlogPage/BlogPage"));
+import AccountPage from "./pages/AccountPage/AccountPage";
 const AccountWishlist = lazy(() =>
   import("./pages/AccountPage/AccountWishlist")
 );
@@ -43,8 +41,6 @@ function App() {
           <Route path={PATHS.ABOUT} element={<AboutPage />} />
           <Route path={PATHS.PRODUCT} element={<ProductPage />} />
           <Route path={PATHS.PRODUCT_DETAIL} element={<ProductDetail />} />
-          <Route path={PATHS.BLOG} element={<BlogPage />} />
-          <Route path={PATHS.BLOG_DETAIL} element={<BlogDetail />} />
           <Route path={PATHS.CONTACT} element={<ContactPage />} />
           <Route path={PATHS.FAG} element={<FagPage />} />
           <Route path={PATHS.PAYMENT} element={<PaymentPage />} />

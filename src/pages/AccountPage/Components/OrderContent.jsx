@@ -1,6 +1,4 @@
-import { PATHS } from "@/constants/pathname";
 import React from "react";
-import { Link } from "react-router-dom";
 
 const OrderContent = ({
   id,
@@ -48,67 +46,54 @@ const OrderContent = ({
           </label>
         </div>
       </div>
-      <div className="table-container">
-        <table className="table table-cart table-mobile">
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th className="text-center">Price</th>
-              <th className="text-center">Quantity</th>
-              <th className="text-center">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {product?.length
-              ? product?.map((item, index) => (
-                  <tr key={item?.id}>
-                    <td className="product-col">
-                      <div className="product">
-                        <figure className="product-media">
-                          <Link to={PATHS.PRODUCT + `/${item?.slug}`}>
-                            <img src={item?.images[0]} alt="Product image" />
-                          </Link>
-                        </figure>
-                        <h3 className="product-title">
-                          <Link to={PATHS.PRODUCT + `/${item?.slug}`}>
-                            {item.name}
-                          </Link>
-                          {!isReview[index] ? (
-                            <div
-                              className="nav-dashboard reviewOrder"
-                              onClick={() => handleReview(item.id)}
-                            >
-                              <p className="nav-link active">Review</p>
-                            </div>
-                          ) : (
-                            <div className="nav-dashboard reviewOrder">
-                              <Link
-                                to={PATHS.PRODUCT + `/${item?.slug}`}
-                                className="nav-link active"
-                              >
-                                Already Reviewed
-                              </Link>
-                            </div>
-                          )}
-                        </h3>
-                      </div>
-                    </td>
-                    <td className="price-col text-center">${item?.price}</td>
-                    <td className="quantity-col text-center">
-                      {quantity.length === product?.length
-                        ? quantity[index]
-                        : "0"}{" "}
-                    </td>
-                    <td className="total-col text-center">
-                      {totalProduct.length === product.length
-                        ? totalProduct[index]
-                        : "0"}
-                    </td>
-                  </tr>
-                ))
-              : ""}
-          </tbody>
-        </table>
+      <table className="table table-cart table-mobile">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th className="text-center">Price</th>
+            <th className="text-center">Quantity</th>
+            <th className="text-center">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {product?.length
+            ? product?.map((item, index) => (
+                <tr key={item?.id}>
+                  <td className="product-col">
+                    <div className="product">
+                      <figure className="product-media">
+                        <a href="#">
+                          <img src={item?.images[0]} alt="Product image" />
+                        </a>
+                      </figure>
+                      <h3 className="product-title">
+                        <a href="#">{item.name}</a>
+                        {!isReview[index] && (
+                          <div
+                            className="nav-dashboard reviewOrder"
+                            onClick={() => handleReview(item.id)}
+                          >
+                            <p className="nav-link active">Review</p>
+                          </div>
+                        )}
+                      </h3>
+                    </div>
+                  </td>
+                  <td className="price-col text-center">${item?.price}</td>
+                  <td className="quantity-col text-center">
+                    {quantity.length === product?.length
+                      ? quantity[index]
+                      : "0"}{" "}
+                  </td>
+                  <td className="total-col text-center">
+                    {totalProduct.length === product.length
+                      ? totalProduct[index]
+                      : "0"}
+                  </td>
+                </tr>
+              ))
+            : ""}
+        </tbody>
         <div className="orderPrice">
           <div className="wrapInfo price">
             <label>
@@ -122,7 +107,7 @@ const OrderContent = ({
             </label>
           </div>
         </div>
-      </div>
+      </table>
     </div>
   );
 };

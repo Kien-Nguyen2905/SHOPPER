@@ -67,11 +67,6 @@ const HeaderMiddle = ({
               </NavLink>
             </li>
             <li>
-              <NavLink onClick={getCategory} to={PATHS.BLOG}>
-                Blog
-              </NavLink>
-            </li>
-            <li>
               <NavLink onClick={getCategory} to={PATHS.CONTACT}>
                 Contact Us
               </NavLink>
@@ -177,24 +172,16 @@ const HeaderMiddle = ({
                   </span>
                 </div>
                 <div className="dropdown-cart-action">
-                  {total > 0 ? (
-                    <>
-                      <Link to={PATHS.CART} className="btn btn-primary">
-                        View Cart
-                      </Link>
-                      <Link
-                        to={PATHS.CHECK_OUT}
-                        className="btn btn-outline-primary-2"
-                      >
-                        <span>Checkout</span>
-                        <i className="icon-long-arrow-right" />
-                      </Link>
-                    </>
-                  ) : (
-                    <Link to={PATHS.PRODUCT} className="btn btn-primary">
-                      No product incart please shopping
-                    </Link>
-                  )}
+                  <Link to={PATHS.CART} className="btn btn-primary">
+                    View Cart
+                  </Link>
+                  <Link
+                    to={PATHS.CHECK_OUT}
+                    className="btn btn-outline-primary-2"
+                  >
+                    <span>Checkout</span>
+                    <i className="icon-long-arrow-right" />
+                  </Link>
                 </div>
               </div>
             </div>
