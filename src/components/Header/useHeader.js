@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useMainContext } from "../Maincontext/MainContext";
+import { MESSAGE } from "@/constants/message";
 
 const useHeader = () => {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const useHeader = () => {
     if (productId) {
       dispatch(removeCart(productId));
       dispatch(getCart());
-      message.success("Successfully");
+      message.success(MESSAGE.ROMOVESUCCESS);
     } else {
       message.error("Failed");
     }

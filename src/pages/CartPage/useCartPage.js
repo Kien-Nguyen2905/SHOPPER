@@ -1,5 +1,9 @@
 import { SHIPPING_OPTIONS, THUNK_STATUS } from "@/constants/general";
-import { removeCart, updateCart } from "@/store/middleware/cartMiddleware";
+import {
+  getCart,
+  removeCart,
+  updateCart,
+} from "@/store/middleware/cartMiddleware";
 import { message } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -81,7 +85,7 @@ const useCartPage = () => {
     if (cartInfo?.product?.length <= 0) {
       onUpdateShip("reset");
     }
-  }, []);
+  }, [cartInfo?.product?.length == 0]);
   const totalProps = {
     subTotal: cartInfo?.subTotal,
     total: cartInfo?.total,

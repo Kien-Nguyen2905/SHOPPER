@@ -1,7 +1,6 @@
 import { PATHS } from "@/constants/pathname";
 import React from "react";
 import { Link } from "react-router-dom";
-import OwlCarousel from "react-owl-carousel";
 
 const Intro = () => {
   return (
@@ -10,19 +9,19 @@ const Intro = () => {
         <div className="row">
           <div className="col-lg-8">
             <div className="intro-slider-container slider-container-ratio mb-2 mb-lg-0">
-              <OwlCarousel
+              <div
                 className="intro-slider owl-carousel owl-simple owl-dark owl-nav-inside"
                 data-toggle="owl"
-                // data-owl-options='{
-                //                                               "nav": false,
-                //                                               "dots": true,
-                //                                               "responsive": {
-                //                                                   "768": {
-                //                                                       "nav": true,
-                //                                                       "dots": false
-                //                                                   }
-                //                                               }
-                //                                           }'
+                data-owl-options='{
+                                                              "nav": false,
+                                                              "dots": true,
+                                                              "responsive": {
+                                                                  "768": {
+                                                                      "nav": true,
+                                                                      "dots": false
+                                                                  }
+                                                              }
+                                                          }'
               >
                 <div className="intro-slide">
                   <figure className="slide-image">
@@ -52,7 +51,7 @@ const Intro = () => {
                     </Link>
                   </div>
                 </div>
-                {/* <div className="intro-slide">
+                <div className="intro-slide">
                   <figure className="slide-image">
                     <img
                       src="/assets/images/demos/demo-3/slider/slide-2.jpg"
@@ -81,8 +80,8 @@ const Intro = () => {
                       <i className="icon-long-arrow-right" />
                     </Link>
                   </div>
-                </div> */}
-              </OwlCarousel>
+                </div>
+              </div>
               <span className="slider-loader" />
             </div>
           </div>

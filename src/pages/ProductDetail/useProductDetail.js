@@ -1,6 +1,7 @@
 import { useMainContext } from "@/components/Maincontext/MainContext";
 import { checkAuthen } from "@/constants/checkAuthen";
 import { THUNK_STATUS } from "@/constants/general";
+import { MESSAGE } from "@/constants/message";
 import { RVTAB } from "@/constants/review";
 import { useMutation } from "@/hooks/useMutation";
 import { useQuery } from "@/hooks/useQuery";
@@ -24,7 +25,7 @@ export const useProductDetail = () => {
     onSuccess: (data) => {
       console.log(data);
       dispatch(profileUser());
-      message.success("Successfully");
+      message.success(MESSAGE.WISHLIST);
     },
     onFail: (error) => {
       console.log(error);
@@ -75,7 +76,6 @@ export const useProductDetail = () => {
             newQuantityPayload.push(updateValue);
             newColorPayload.push(newColor);
           }
-
           addPayload = {
             ...cartInfo,
             product: newProductPayload,
@@ -96,7 +96,7 @@ export const useProductDetail = () => {
         }
         const res = await dispatch(updateCart(addPayload)).unwrap();
         if (res.id) {
-          message.success("Successfully");
+          message.success(MESSAGE.ADDSUCCESS);
         }
       } catch (error) {
         console.log("error", error);

@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useMainContext } from "../Maincontext/MainContext";
 import { profileUser } from "@/store/middleware/authMiddleware";
+import { MESSAGE } from "@/constants/message";
 
 const ProductCart = ({ item }) => {
   const { openModal } = useMainContext();
@@ -21,7 +22,7 @@ const ProductCart = ({ item }) => {
     onSuccess: (data) => {
       console.log(data);
       dispatch(profileUser());
-      message.success("Successfully");
+      message.success(MESSAGE.WISHLIST);
     },
     onFail: (error) => {
       console.log(error);
@@ -38,7 +39,7 @@ const ProductCart = ({ item }) => {
       try {
         const res = await dispatch(addToCart(item?.id)).unwrap();
         if (res.id) {
-          message.success("Successfully");
+          message.success(MESSAGE.ADDSUCCESS);
         }
       } catch (error) {
         console.log("error", error);
@@ -90,7 +91,7 @@ const ProductCart = ({ item }) => {
               style={{ width: `${(item?.rating || 0) * 20}%` }}
             />
           </div>
-          <span className="ratings-text">( 4 Reviews )</span>
+          {/* <span className="ratings-text">( 4 Reviews )</span> */}
         </div>
       </div>
     </div>

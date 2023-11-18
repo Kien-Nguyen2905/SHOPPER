@@ -1,5 +1,6 @@
 import Button from "@/components/Button/Button";
 import { THUNK_STATUS } from "@/constants/general";
+import { MESSAGE } from "@/constants/message";
 import { PATHS } from "@/constants/pathname";
 import { profileUser } from "@/store/middleware/authMiddleware";
 import { addToCart } from "@/store/middleware/cartMiddleware";
@@ -19,7 +20,7 @@ const AccountWishlist = () => {
       try {
         const res = await dispatch(addToCart(product)).unwrap();
         if (res.id) {
-          message.success("Successfully");
+          message.success(MESSAGE.ADDSUCCESS);
         }
       } catch (error) {
         console.log("error", error);
@@ -45,6 +46,7 @@ const AccountWishlist = () => {
       );
       if (response?.data?.data) {
         dispatch(profileUser());
+        message.success(MESSAGE.ROMOVESUCCESS);
       }
     } catch (error) {
       console.error("Delete error:", error);
@@ -61,7 +63,6 @@ const AccountWishlist = () => {
       ),
       onOk() {
         deleteFromWhiteList(item?.id);
-        message.success("Successfully");
       },
       onCancel() {
         console.log("Cancel");
