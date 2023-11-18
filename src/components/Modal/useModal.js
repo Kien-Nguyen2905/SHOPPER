@@ -23,6 +23,7 @@ const useModal = () => {
           password: values.password,
         };
         const res = await dispatch(login(payload));
+        console.log(res);
         const resProfile = unwrapResult(unwrapResult(res));
         if (values.remember) {
           localStorage.setItem("email", values.email);
@@ -39,7 +40,7 @@ const useModal = () => {
         }
       } catch (error) {
         console.log(error);
-        message.error("Somthing wrong, please try again ! ");
+        message.error(error?.message);
       }
     }
   };

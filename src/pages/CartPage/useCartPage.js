@@ -1,6 +1,7 @@
 import { SHIPPING_OPTIONS, THUNK_STATUS } from "@/constants/general";
 import { removeCart, updateCart } from "@/store/middleware/cartMiddleware";
 import { message } from "antd";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const useCartPage = () => {
@@ -46,11 +47,14 @@ const useCartPage = () => {
     }
   };
   const onUpdateShip = async (value) => {
-    const selectShip = SHIPPING_OPTIONS?.find((item) => item.value === value);
+    let selectShip = SHIPPING_OPTIONS?.find((item) => item.value === value) || {
+      value: "reset",
+      label: "",
+      price: 0,
+    };
     if (cartInfo?.id && updateStatus !== THUNK_STATUS.pending && selectShip) {
       try {
         const updateShipProducts = products?.map((item) => item?.id);
-        console.log(updateShipProducts);
         let newPayload = {
           ...cartInfo,
           product: updateShipProducts,
@@ -59,7 +63,6 @@ const useCartPage = () => {
             price: selectShip.price,
           },
         };
-        console.log("payload", newPayload);
         await dispatch(updateCart(newPayload)).unwrap();
       } catch (error) {
         console.log("error", error);
@@ -74,6 +77,11 @@ const useCartPage = () => {
       message.error("Failed");
     }
   };
+  useEffect(() => {
+    if (cartInfo?.product?.length <= 0) {
+      onUpdateShip("reset");
+    }
+  }, []);
   const totalProps = {
     subTotal: cartInfo?.subTotal,
     total: cartInfo?.total,

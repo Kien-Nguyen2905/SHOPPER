@@ -1,6 +1,6 @@
 import { PATHS } from "@/constants/pathname";
 import useDebounce from "@/hooks/useDebounce";
-import { removeCart } from "@/store/middleware/cartMiddleware";
+import { getCart, removeCart } from "@/store/middleware/cartMiddleware";
 import { authActions } from "@/store/reducers/authReducer";
 import { cartActions } from "@/store/reducers/cartReducer";
 import { message } from "antd";
@@ -45,6 +45,7 @@ const useHeader = () => {
   const onRemoveProduct = (productId) => {
     if (productId) {
       dispatch(removeCart(productId));
+      dispatch(getCart());
       message.success("Successfully");
     } else {
       message.error("Failed");

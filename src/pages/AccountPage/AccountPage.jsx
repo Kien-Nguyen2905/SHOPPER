@@ -287,7 +287,7 @@ const AccountPage = () => {
         />
         <Input
           type="password"
-          label="Current password (leave blank to leave unchanged)"
+          label="Password"
           name="password"
           control={control}
         />

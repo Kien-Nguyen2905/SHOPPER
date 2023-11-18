@@ -1,4 +1,3 @@
-import { useMainContext } from "@/components/Maincontext/MainContext";
 import { useMutation } from "@/hooks/useMutation";
 import { subscribeService } from "@/services/subscribeService";
 import { message } from "antd";
@@ -23,7 +22,6 @@ export const useContact = () => {
         description: data.message,
         phone: data.phone,
       };
-      console.log(payload);
       execute(payload);
     } catch (error) {
       message.error("Failed");

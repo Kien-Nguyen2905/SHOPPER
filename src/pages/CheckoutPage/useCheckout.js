@@ -16,6 +16,7 @@ export const useCheckout = () => {
   const { cartInfo } = useSelector((state) => state.cart);
   const { checkoutStatus } = useSelector((state) => state.order);
   // Coupon Props
+  console.log(cartInfo);
   const onAddCoupon = async (coupon) => {
     try {
       const couponRes = await orderService.getVoucher(coupon);
@@ -63,7 +64,6 @@ export const useCheckout = () => {
   };
   const { profile } = useSelector((state) => state.auth);
   const form = useForm();
-
   useEffect(() => {
     if (profile?.id) {
       const {
@@ -106,7 +106,6 @@ export const useCheckout = () => {
 
   useEffect(() => {
     if (Object.values(PAYMENT_METHOD).includes(cartInfo.paymentMethod)) {
-      console.log(cartInfo.paymentMethod);
       setCurrentPaymentMethod(cartInfo.paymentMethod);
     }
   }, [cartInfo.paymentMethod]);
@@ -174,10 +173,9 @@ export const useCheckout = () => {
   };
 
   const onPlaceOrder = () => {
-    console.log(currenPaymentMethod);
     if (!!!cartInfo.shipping?.typeShip) {
       message.error("Please select type shipping in your order");
-    } else if (!!!currenPaymentMethod) {
+    } else if (currenPaymentMethod == "string") {
       console.log(currenPaymentMethod);
       message.error("Please choose payment method");
     } else {

@@ -6,6 +6,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const CartTotal = ({ subTotal, typeShip, total, onUpdateShip }) => {
+  console.log(typeShip);
   return (
     <aside className="col-lg-3">
       <div className="summary summary-cart">

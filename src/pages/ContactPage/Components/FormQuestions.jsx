@@ -4,9 +4,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 const FormQuestions = ({ submitForm }) => {
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control, reset } = useForm();
   const handleQuestions = (values) => {
     submitForm?.(values);
+    setTimeout(() => {
+      reset();
+    }, 450);
   };
   return (
     <form

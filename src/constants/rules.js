@@ -25,6 +25,9 @@ export const rules = {
   firstName: {
     required: { value: true, message: "Please enter your name" },
   },
+  fullName: {
+    required: { value: true, message: "Please enter your name" },
+  },
   birthday: {
     required: { value: true, message: "Please enter your birthday" },
   },
@@ -52,5 +55,14 @@ export const rules = {
   },
   street: {
     required: { value: true, message: "Please enter address" },
+  },
+  province: {
+    required: { value: true, message: "Please choose province/city" },
+  },
+  district: {
+    required: { value: true, message: "Please choose district/town" },
+  },
+  ward: {
+    required: { value: true, message: "Please choose ward" },
   },
 };

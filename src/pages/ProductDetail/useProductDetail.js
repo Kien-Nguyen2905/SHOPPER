@@ -32,8 +32,12 @@ export const useProductDetail = () => {
     },
   });
   const onWishList = (idProduct) => {
-    execute({ product: idProduct });
-    dispatch(profileUser());
+    if (!checkAuthen) {
+      openModal();
+    } else {
+      execute({ product: idProduct });
+      dispatch(profileUser());
+    }
   };
   const productDetailForm = useForm({
     defaultValues: {
