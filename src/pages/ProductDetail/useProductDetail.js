@@ -37,7 +37,6 @@ export const useProductDetail = () => {
       openModal();
     } else {
       execute({ product: idProduct });
-      dispatch(profileUser());
     }
   };
   const productDetailForm = useForm({

@@ -152,7 +152,6 @@ export const useCheckout = () => {
       paymentMethod: currenPaymentMethod || "",
       note: note || "",
     };
-
     try {
       if (
         orderPayload?.product?.length > 0 &&

@@ -47,7 +47,9 @@ export const useBlogPage = () => {
     }
   }, [debounceSearch]);
   useEffect(() => {
-    refetchBlogs?.(search);
+    if (!!search) {
+      refetchBlogs?.(search);
+    }
   }, [search]);
   const blogList = data;
   const pagiBlogs = data?.pagination;
