@@ -20,6 +20,7 @@ const useHeader = () => {
     openModalMobile,
     isOpenSearch,
     setIsOpenSearch,
+    setCheckAuthen,
   } = useMainContext();
   const { profile } = useSelector((state) => state.auth);
   const { cartInfo } = useSelector((state) => state.cart);
@@ -41,6 +42,7 @@ const useHeader = () => {
   }, [pathname]);
   const onLogout = () => {
     dispatch(authActions.logout());
+    setCheckAuthen(false);
     dispatch(cartActions.clearCart());
   };
   const onRemoveProduct = (productId) => {

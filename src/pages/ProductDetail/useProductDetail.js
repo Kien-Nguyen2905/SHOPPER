@@ -1,5 +1,4 @@
 import { useMainContext } from "@/components/Maincontext/MainContext";
-import { checkAuthen } from "@/constants/checkAuthen";
 import { THUNK_STATUS } from "@/constants/general";
 import { MESSAGE } from "@/constants/message";
 import { RVTAB } from "@/constants/review";
@@ -19,7 +18,7 @@ import { useParams } from "react-router-dom";
 export const useProductDetail = () => {
   const { slug } = useParams();
   const dispatch = useDispatch();
-  const { openModal } = useMainContext();
+  const { openModal, checkAuthen, setCheckAuthen } = useMainContext();
   const { cartInfo, updateStatus } = useSelector((state) => state.cart);
   const { execute } = useMutation(wishlistService.addList, {
     onSuccess: (data) => {
@@ -50,6 +49,7 @@ export const useProductDetail = () => {
     error: errorProductDetail,
   } = useQuery(() => productService.getProductsDetail(slug), [slug]);
   const onAdd = async (updateValue, idDetail) => {
+    console.log(checkAuthen);
     if (!checkAuthen) {
       openModal();
     } else if (idDetail && updateStatus !== THUNK_STATUS.pending) {

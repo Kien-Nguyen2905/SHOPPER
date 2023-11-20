@@ -4,10 +4,12 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import { message } from "antd";
 import { useDispatch } from "react-redux";
 import { useMainContext } from "../Maincontext/MainContext";
+import { LOCAL } from "@/constants/localStorage";
+import { checkAuthen } from "@/constants/checkAuthen";
 
 const useModal = () => {
   const dispatch = useDispatch();
-  const { isOpenModal, authenForm, closeModal, setAuthenForm } =
+  const { isOpenModal, authenForm, closeModal, setAuthenForm, setCheckAuthen } =
     useMainContext();
   const onChangeTab = (tab) => {
     setAuthenForm(tab);
@@ -23,7 +25,6 @@ const useModal = () => {
           password: values.password,
         };
         const res = await dispatch(login(payload));
-        console.log(res);
         const resProfile = unwrapResult(unwrapResult(res));
         if (values.remember) {
           localStorage.setItem("email", values.email);
@@ -36,6 +37,7 @@ const useModal = () => {
         }
         if (resProfile?.id) {
           onClose();
+          setCheckAuthen(true);
           message.success("Wellcome");
         }
       } catch (error) {

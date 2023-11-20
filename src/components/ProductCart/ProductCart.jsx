@@ -1,4 +1,3 @@
-import { checkAuthen } from "@/constants/checkAuthen";
 import { EMPTY, THUNK_STATUS } from "@/constants/general";
 import { LOCAL } from "@/constants/localStorage";
 import { PATHS } from "@/constants/pathname";
@@ -15,7 +14,7 @@ import { profileUser } from "@/store/middleware/authMiddleware";
 import { MESSAGE } from "@/constants/message";
 
 const ProductCart = ({ item }) => {
-  const { openModal } = useMainContext();
+  const { openModal, checkAuthen } = useMainContext();
   const { updateStatus } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const { execute } = useMutation(wishlistService.addList, {
@@ -33,6 +32,7 @@ const ProductCart = ({ item }) => {
     checkAuthen ? execute({ product: idProduct }) : openModal();
   };
   const onAddToCart = async () => {
+    console.log(checkAuthen);
     if (!checkAuthen) {
       openModal();
     } else if (item?.id && updateStatus !== THUNK_STATUS.pending) {

@@ -11,6 +11,7 @@ export const MainProvider = ({ children }) => {
   const [isOpenModalMb, setIsOpenModalMb] = useState(false);
   const [isOpenSearch, setIsOpenSearch] = useState(false);
   const [authenForm, setAuthenForm] = useState(AUTHEN_TYPE.login);
+  const [checkAuthen, setCheckAuthen] = useState(false);
   const [category, setCategory] = useState();
   useEffect(() => {
     getCategory();
@@ -55,6 +56,8 @@ export const MainProvider = ({ children }) => {
     isOpenModalMb,
     isOpenSearch,
     setIsOpenSearch,
+    setCheckAuthen,
+    checkAuthen,
   };
   return <MainContext.Provider value={value}>{children}</MainContext.Provider>;
 };

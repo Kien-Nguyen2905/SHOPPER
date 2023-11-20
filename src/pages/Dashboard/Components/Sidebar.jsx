@@ -1,3 +1,4 @@
+import { useMainContext } from "@/components/Maincontext/MainContext";
 import { PATHS } from "@/constants/pathname";
 import { authActions } from "@/store/reducers/authReducer";
 import { cartActions } from "@/store/reducers/cartReducer";
@@ -7,8 +8,10 @@ import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
+  const { setCheckAuthen } = useMainContext();
   const onLogout = () => {
     dispatch(authActions.logout());
+    setCheckAuthen(false);
     dispatch(cartActions.clearCart());
   };
   return (

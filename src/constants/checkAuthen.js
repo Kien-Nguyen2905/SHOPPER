@@ -1,3 +1,3 @@
 import { LOCAL } from "./localStorage";
 
-export const checkAuthen = !!localStorage.getItem(LOCAL.token);
+export let checkAuthen = !!localStorage.getItem(LOCAL.token);
