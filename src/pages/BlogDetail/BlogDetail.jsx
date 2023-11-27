@@ -39,10 +39,7 @@ const BlogDetail = () => {
               <article className="entry single-entry">
                 <div className="entry-body">
                   <figure className="entry-media">
-                    <img
-                      src="assets/images/blog/single/1.jpg"
-                      alt="image desc"
-                    />
+                    <img src={dataDetail?.image} alt="image desc" />
                   </figure>
                   <h1 className="entry-title entry-title-big">
                     {dataDetail?.name}
