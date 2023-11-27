@@ -17,8 +17,8 @@ const Footer = () => {
                   width={120}
                 />
                 <p>
-                  Praesent dapibus, neque id cursus ucibus, tortor neque egestas
-                  augue, eu vulputate magna eros eu erat.
+                  CFDShop is a project developed by students in the Frontend
+                  Master course Reactjs Master phase at CFD Circle
                 </p>
                 <div className="widget-call">
                   <i className="icon-phone" /> Got Question? Call us 24/7
@@ -89,7 +89,7 @@ const Footer = () => {
       <div className="footer-bottom">
         <div className="container">
           <p className="footer-copyright">
-            Copyright © 2023
+            Copyright © 2023-
             <a href="https://cfdcircle.vn/" target="_blank">
               <strong>CFD Circle</strong>
             </a>

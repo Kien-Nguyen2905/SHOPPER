@@ -24,7 +24,6 @@ const HomePage = () => {
     <main className="main">
       <Intro />
       <HotProduct {...hotProduct} renderProduct={renderProduct} />
-      <div className="mb-7 mb-lg-11" />
       <DealProduct {...hotProduct} />
       <BrandProduct listBrand={brands} />
       <div className="container">
