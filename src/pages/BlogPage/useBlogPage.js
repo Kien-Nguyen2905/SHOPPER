@@ -41,11 +41,19 @@ export const useBlogPage = () => {
   const onSearch = (e) => {
     setSearchBlog(e.target.value || "");
   };
+  const onCateChange = (category) => {
+    updateQueryString({ ...queryObject, category, page: 1 });
+  };
   useEffect(() => {
-    if (debounceSearch !== undefined) {
-      navigate(PATHS.BLOG + `?search=${debounceSearch}`);
+    if (debounceSearch !== undefined || queryObject.category) {
+      navigate(
+        PATHS.BLOG +
+          `?search=${debounceSearch || ""}&category=${
+            queryObject.category || ""
+          }`
+      );
     }
-  }, [debounceSearch]);
+  }, [debounceSearch, queryObject.category]);
   useEffect(() => {
     if (!!search) {
       refetchBlogs?.(search);
@@ -67,6 +75,7 @@ export const useBlogPage = () => {
     qtyBlogOfCate,
     onSearch,
     searchBlog,
+    onCateChange,
   };
   const isLoadingBlog = useDebounce(loadingBlog, 1500);
   //   console.log(pagiProps);

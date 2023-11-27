@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SidebarBlog = ({
+  onCateChange,
   cateList,
   qtyBlogOfCate,
   tagList,
@@ -40,9 +41,11 @@ const SidebarBlog = ({
             {cateList?.length > 0 &&
               cateList?.map((item, index) => (
                 <li key={index}>
-                  <Link to={PATHS.BLOG + `?category=${item?.id}`}>
+                  <Link
+                    onClick={() => onCateChange(item?.id)}
+                    to={PATHS.BLOG + `?category=${item?.id}`}
+                  >
                     {item?.name}
-                    {/* <span>{qtyBlogOfCate(item?.name)}</span> */}
                   </Link>
                 </li>
               ))}

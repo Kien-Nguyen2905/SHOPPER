@@ -24,6 +24,7 @@ export const useBlogDetail = () => {
       console.log(error);
     }
   };
+
   const isLoadingDetail = useDebounce(loadingDetail, 500);
   return { dataDetail, getTag, listRelate, relatedBlog, isLoadingDetail };
 };
