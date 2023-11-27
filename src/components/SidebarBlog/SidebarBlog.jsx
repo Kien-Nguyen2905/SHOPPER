@@ -1,5 +1,5 @@
 import { PATHS } from "@/constants/pathname";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const SidebarBlog = ({
@@ -10,6 +10,7 @@ const SidebarBlog = ({
   onSearch,
   searchBlog,
 }) => {
+  const [activeCategoryId, setActiveCategoryId] = useState(null);
   return (
     <aside className="col-lg-3">
       <div className="sidebar">
@@ -42,12 +43,16 @@ const SidebarBlog = ({
               cateList?.map((item, index) => (
                 <li key={index}>
                   <Link
-                    onClick={() => onCateChange(item?.id)}
                     to={
                       searchBlog
                         ? `${PATHS.BLOG}?category=${item?.id}&search=${searchBlog}`
                         : `${PATHS.BLOG}?category=${item?.id}`
                     }
+                    onClick={() => {
+                      onCateChange(item?.id);
+                      setActiveCategoryId(item?.id);
+                    }}
+                    className={activeCategoryId === item?.id ? "active" : ""}
                   >
                     {item?.name}
                   </Link>
