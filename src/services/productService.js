@@ -2,7 +2,13 @@ import instance from "./interceptor";
 
 export const productService = {
   getProducts(query = "") {
-    return instance.get(`products${query}`);
+    return instance.get(
+      `products${
+        query
+          ? `${query}&orderBy=sortOrder&order=-1`
+          : "?orderBy=sortOrder&order=-1"
+      }`
+    );
   },
   getProductsDetail(slug = "") {
     return instance.get(`products/${slug}`);
