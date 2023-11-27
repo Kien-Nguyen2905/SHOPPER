@@ -46,12 +46,13 @@ export const useBlogPage = () => {
   };
   useEffect(() => {
     if (debounceSearch !== undefined || queryObject.category) {
-      navigate(
-        PATHS.BLOG +
-          `?search=${debounceSearch || ""}&category=${
-            queryObject.category || ""
-          }`
-      );
+      let searchQuery = `?search=${debounceSearch || ""}`;
+
+      if (queryObject.category) {
+        searchQuery += `&category=${queryObject.category}`;
+      }
+
+      navigate(PATHS.BLOG + searchQuery);
     }
   }, [debounceSearch, queryObject.category]);
   useEffect(() => {

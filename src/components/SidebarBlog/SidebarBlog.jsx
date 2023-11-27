@@ -43,7 +43,11 @@ const SidebarBlog = ({
                 <li key={index}>
                   <Link
                     onClick={() => onCateChange(item?.id)}
-                    to={PATHS.BLOG + `?category=${item?.id}`}
+                    to={
+                      searchBlog
+                        ? `${PATHS.BLOG}?category=${item?.id}&search=${searchBlog}`
+                        : `${PATHS.BLOG}?category=${item?.id}`
+                    }
                   >
                     {item?.name}
                   </Link>
