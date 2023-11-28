@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const SidebarBlog = ({
   onCateChange,
   cateList,
-  qtyBlogOfCate,
   tagList,
   onSearch,
   searchBlog,
