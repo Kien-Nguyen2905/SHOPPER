@@ -34,6 +34,7 @@ export const useProductPage = () => {
   } = useQuery(productService.getCategories);
   const categorise = dataCategorise?.products || [];
   const updateQueryString = (queryObject) => {
+    console.log(queryObject);
     const newQueryString = queryString.stringify({
       ...queryObject,
       limit: LIMITS,
@@ -57,7 +58,8 @@ export const useProductPage = () => {
     if (sortQueryObject) {
       updateQueryString({
         ...queryObject,
-        ...sortQueryObject,
+        orderBy: sortQueryObject.orderBy,
+        order: sortQueryObject.order,
         page: 1,
       });
     }

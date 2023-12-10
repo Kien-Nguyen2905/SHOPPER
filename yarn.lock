@@ -290,29 +290,28 @@
   resolved "https://registry.npmjs.org/@remix-run/router/-/router-1.11.0.tgz"
   integrity sha512-BHdhcWgeiudl91HvVa2wxqZjSHbheSgIiDvxrF1VjFzBzpTtuDPkOdOi3Iqvc08kXtFkLjhbS+ML9aM8mJS+wQ==
 
-"@swc/core-darwin-arm64@^1.3.96", "@swc/core-darwin-arm64@1.3.96":
-  version "1.3.96"
-  resolved "https://registry.npmjs.org/@swc/core-darwin-arm64/-/core-darwin-arm64-1.3.96.tgz"
-  integrity sha512-8hzgXYVd85hfPh6mJ9yrG26rhgzCmcLO0h1TIl8U31hwmTbfZLzRitFQ/kqMJNbIBCwmNH1RU2QcJnL3d7f69A==
+"@swc/core-darwin-arm64@^1.3.100", "@swc/core-darwin-arm64@1.3.100":
+  version "1.3.100"
+  resolved "https://registry.npmjs.org/@swc/core-darwin-arm64/-/core-darwin-arm64-1.3.100.tgz"
+  integrity sha512-XVWFsKe6ei+SsDbwmsuRkYck1SXRpO60Hioa4hoLwR8fxbA9eVp6enZtMxzVVMBi8ej5seZ4HZQeAWepbukiBw==
 
-"@swc/core@^1.3.95", "@swc/core@^1.3.96":
-  version "1.3.96"
-  resolved "https://registry.npmjs.org/@swc/core/-/core-1.3.96.tgz"
-  integrity sha512-zwE3TLgoZwJfQygdv2SdCK9mRLYluwDOM53I+dT6Z5ZvrgVENmY3txvWDvduzkV+/8IuvrRbVezMpxcojadRdQ==
+"@swc/core@^1.3.100", "@swc/core@^1.3.95":
+  version "1.3.100"
+  resolved "https://registry.npmjs.org/@swc/core/-/core-1.3.100.tgz"
+  integrity sha512-7dKgTyxJjlrMwFZYb1auj3Xq0D8ZBe+5oeIgfMlRU05doXZypYJe0LAk0yjj3WdbwYzpF+T1PLxwTWizI0pckw==
   dependencies:
     "@swc/counter" "^0.1.1"
     "@swc/types" "^0.1.5"
   optionalDependencies:
-    "@swc/core-darwin-arm64" "1.3.96"
-    "@swc/core-darwin-x64" "1.3.96"
-    "@swc/core-linux-arm-gnueabihf" "1.3.96"
-    "@swc/core-linux-arm64-gnu" "1.3.96"
-    "@swc/core-linux-arm64-musl" "1.3.96"
-    "@swc/core-linux-x64-gnu" "1.3.96"
-    "@swc/core-linux-x64-musl" "1.3.96"
-    "@swc/core-win32-arm64-msvc" "1.3.96"
-    "@swc/core-win32-ia32-msvc" "1.3.96"
-    "@swc/core-win32-x64-msvc" "1.3.96"
+    "@swc/core-darwin-arm64" "1.3.100"
+    "@swc/core-darwin-x64" "1.3.100"
+    "@swc/core-linux-arm64-gnu" "1.3.100"
+    "@swc/core-linux-arm64-musl" "1.3.100"
+    "@swc/core-linux-x64-gnu" "1.3.100"
+    "@swc/core-linux-x64-musl" "1.3.100"
+    "@swc/core-win32-arm64-msvc" "1.3.100"
+    "@swc/core-win32-ia32-msvc" "1.3.100"
+    "@swc/core-win32-x64-msvc" "1.3.100"
 
 "@swc/counter@^0.1.1":
   version "0.1.2"
