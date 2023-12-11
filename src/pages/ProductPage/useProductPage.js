@@ -9,6 +9,7 @@ const LIMITS = 9;
 export const useProductPage = () => {
   const { search } = useLocation();
   const queryObject = queryString.parse(search);
+  console.log(queryObject);
   const [_, setSearchParams] = useSearchParams();
   const {
     data: dataProducts,

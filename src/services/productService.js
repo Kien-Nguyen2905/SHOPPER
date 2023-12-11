@@ -1,16 +1,31 @@
 import instance from "./interceptor";
+const convert = (string = "") => {
+  return JSON.parse(
+    '{"' +
+      decodeURI(string)
+        .replace(/"/g, '\\"')
+        .replace(/&/g, '","')
+        .replace(/=/g, '":"') +
+      '"}'
+  );
+};
+const obtoquery = (object = {}) => {
+  return "?" + new URLSearchParams(object).toString();
+};
 
 export const productService = {
   getProducts(query = "") {
+    const querynew = convert(`orderBy=sortOrder&order=-1&${query.substr(1)}`);
+    console.log(obtoquery(querynew));
     return instance.get(
       `products${
         query
-          ? `${query}&orderBy=sortOrder&order=-1`
+          ? decodeURIComponent(obtoquery({ ...querynew }))
           : "?orderBy=sortOrder&order=-1"
       }`
     );
   },
-  // return instance.get(`products${query}`);
+
   getProductsDetail(slug = "") {
     return instance.get(`products/${slug}`);
   },
