@@ -84,12 +84,9 @@ a.active {
 .orderItem .product {
   background-color: transparent;
 }
-/* .owl-item.active {
-  width: 100% !important;
-}
-.owl-stage {
-  width: 100% !important;
-} */
 .ant-select-selection-item {
   color: #777;
+}
+.col-sm-4 .form-control.customize.active {
+  border: 1px solid #fcb941;
 }

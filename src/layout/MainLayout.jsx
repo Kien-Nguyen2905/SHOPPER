@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MainProvider } from "@/components/Maincontext/MainContext";
 import { LOCAL } from "@/constants/localStorage";
 import { profileUser } from "@/store/middleware/authMiddleware";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet, useLocation } from "react-router-dom";
 import ButtonScroll from "../components/ButtonScroll/ButtonScroll";
@@ -13,15 +12,20 @@ import MenuMobileOverlay from "../components/Mobile/MenuMobileOverlay";
 import Modal from "../components/Modal/Modal";
 import { libFunc } from "@/assets/js/main";
 import { getCart } from "@/store/middleware/cartMiddleware";
+import { useSpring, animated } from "@react-spring/web";
 
 const MainLayout = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       libFunc();
+      setIsLoading(false);
     }, 500);
     document.body.scrollIntoView({ behavior: "smooth", block: "start" });
+
     return () => {
       const elementDom = document.querySelector(".zoomContainer");
       elementDom?.remove();
@@ -35,17 +39,25 @@ const MainLayout = () => {
       dispatch(getCart());
     }
   }, []);
+
+  const springProps = useSpring({
+    opacity: isLoading ? 0 : 1,
+    from: { opacity: 0 },
+  });
+
   return (
     <MainProvider>
-      <div className="page-wrapper">
-        <Header />
-        <Outlet />
-        <Footer />
-      </div>
-      <ButtonScroll />
-      <MenuMobileOverlay />
-      <MenuMobile />
-      <Modal />
+      <animated.div style={springProps}>
+        <div className="page-wrapper">
+          <Header />
+          <Outlet />
+          <Footer />
+        </div>
+        <ButtonScroll />
+        <MenuMobileOverlay />
+        <MenuMobile />
+        <Modal />
+      </animated.div>
     </MainProvider>
   );
 };

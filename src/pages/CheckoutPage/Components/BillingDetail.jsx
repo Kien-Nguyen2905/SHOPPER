@@ -167,6 +167,7 @@ const BillingDetail = ({ form, profile }) => {
                   placeholder="Vui lòng chọn quận / huyện"
                   style={{ padding: 0 }}
                   showSearch
+                  disabled={dataDistrict.length <= 0}
                   optionFilterProp="children"
                   filterOption={(input, option) =>
                     (option?.label ?? "").includes(input)
@@ -202,6 +203,7 @@ const BillingDetail = ({ form, profile }) => {
                   placeholder="Vui lòng chọn phường xã"
                   style={{ padding: 0 }}
                   showSearch
+                  disabled={dataWard.length <= 0}
                   optionFilterProp="children"
                   filterOption={(input, option) =>
                     (option?.label ?? "").includes(input)

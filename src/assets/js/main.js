@@ -101,6 +101,11 @@ export const libFunc = () => {
     //     }
     //   });
 
+    $(".form-control.customize").on("click", function () {
+      $(".form-control.customize").removeClass("active");
+      $(this).addClass("active");
+    });
+
     // Mobile Menu toggle children menu
     $(".mmenu-btn").on("click", function (e) {
       var $parent = $(this).closest("li"),

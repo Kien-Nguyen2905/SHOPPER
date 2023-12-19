@@ -92,7 +92,6 @@ const AccountPage = () => {
     setValueDistrcit(idDistrict);
     setValueWard();
   };
-
   const handleChangeWard = (idWard) => {
     setValueWard(idWard);
   };
