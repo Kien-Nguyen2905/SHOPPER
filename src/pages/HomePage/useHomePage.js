@@ -15,7 +15,6 @@ export const useHomePage = () => {
     productService.getProducts
   );
   const products = dataProducts?.products || [];
-
   const { data: dataCategorise, loading: loadiCategorise } = useQuery(
     productService.getCategories
   );

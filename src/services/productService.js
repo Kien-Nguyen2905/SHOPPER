@@ -15,8 +15,9 @@ const obtoquery = (object = {}) => {
 
 export const productService = {
   getProducts(query = "") {
-    const querynew = convert(`orderBy=sortOrder&order=-1&${query.substr(1)}`);
-    console.log(obtoquery(querynew));
+    const querynew = convert(
+      `orderBy=sortOrder&order=-1${query ? `&` + query.substr(1) : ""}`
+    );
     return instance.get(
       `products${
         query
@@ -25,7 +26,6 @@ export const productService = {
       }`
     );
   },
-
   getProductsDetail(slug = "") {
     return instance.get(`products/${slug}`);
   },
