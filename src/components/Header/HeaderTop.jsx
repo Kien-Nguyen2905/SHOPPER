@@ -12,17 +12,20 @@ const HeaderTop = ({ openModal, profile, onLogout, list }) => {
           </a>
         </div>
         <div className="header-right">
+          {/* when user has profile display profile account otherwise display modal login/register */}
           {profile ? (
             <ul className="top-menu">
               <li>
                 <a className="top-link-menu">
                   <i className="icon-user"></i>
+                  {/* Firstly time login user will be Guest */}
                   {!profile?.firstName ? "Guest" : profile?.firstName}
                 </a>
                 <ul>
                   <li>
                     <ul>
                       <li>
+                        {/* Routing page */}
                         <Link to={PATHS.DASHBOARD.INDEX}>Account Details</Link>
                       </li>
                       <li>
@@ -34,6 +37,7 @@ const HeaderTop = ({ openModal, profile, onLogout, list }) => {
                         </Link>
                       </li>
                       <li>
+                        {/* Logout */}
                         <a onClick={onLogout}>Sign Out</a>
                       </li>
                     </ul>
@@ -44,6 +48,7 @@ const HeaderTop = ({ openModal, profile, onLogout, list }) => {
           ) : (
             <ul className="top-menu top-link-menu">
               <li>
+                {/* openModal */}
                 <a className="top-menu-login" onClick={openModal}>
                   <i className="icon-user" />
                   Login | Resgister

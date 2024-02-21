@@ -1,9 +1,5 @@
 import { SHIPPING_OPTIONS, THUNK_STATUS } from "@/constants/general";
-import {
-  getCart,
-  removeCart,
-  updateCart,
-} from "@/store/middleware/cartMiddleware";
+import { removeCart, updateCart } from "@/store/middleware/cartMiddleware";
 import { message } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,7 +28,7 @@ const useCartPage = () => {
     ) {
       try {
         let updatePayload = {};
-        const newProduct = updateProducts?.map((product) => {
+        const product = updateProducts?.map((product) => {
           return product.id;
         });
         const newQuantity = updateProducts?.map((product) => {
@@ -40,10 +36,11 @@ const useCartPage = () => {
         });
         updatePayload = {
           ...cartInfo,
-          product: newProduct,
+          product: product,
           quantity: newQuantity,
         };
-        await dispatch(updateCart(updatePayload)).unwrap();
+        const n = await dispatch(updateCart(updatePayload)).unwrap();
+        console.log(n);
       } catch (error) {
         console.log("error", error);
         message.error("Failed");

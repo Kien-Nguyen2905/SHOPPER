@@ -1,5 +1,4 @@
 import { EMPTY, THUNK_STATUS } from "@/constants/general";
-import { LOCAL } from "@/constants/localStorage";
 import { PATHS } from "@/constants/pathname";
 import { useMutation } from "@/hooks/useMutation";
 import { wishlistService } from "@/services/wishlistService";

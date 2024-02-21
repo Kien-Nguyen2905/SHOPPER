@@ -118,7 +118,6 @@ const PagiItem = ({
         isDisabled ? "disabled" : ""
       }`}
       onClick={() => (isDisabled ? {} : onClick())}
-      {...props}
     >
       <a className="page-link" role="button">
         {children}

@@ -5,7 +5,6 @@ export const Select = ({
   label,
   required,
   value,
-  defaultValue,
   error,
   onChange,
   className,

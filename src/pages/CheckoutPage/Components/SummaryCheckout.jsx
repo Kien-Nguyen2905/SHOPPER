@@ -47,13 +47,16 @@ const SummaryCheckout = ({
             <tr>
               <td>Shipping:</td>
               <td style={{ textTransform: "capitalize" }}>
-                {shipping?.typeShip || (
+                {shipping?.typeShip === "reset" ||
+                shipping?.typeShip == undefined ? (
                   <Link
                     style={{ textDecoration: "underline", color: "red" }}
                     to={PATHS.CART}
                   >
                     Please select
                   </Link>
+                ) : (
+                  shipping?.typeShip
                 )}
               </td>
             </tr>

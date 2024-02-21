@@ -8,6 +8,7 @@ const LoadingStyled = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 const Loading = () => {
   return (
     <LoadingStyled>

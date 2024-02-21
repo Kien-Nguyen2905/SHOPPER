@@ -8,7 +8,6 @@ import Intro from "./Components/Intro";
 import Signature from "./Components/Signature";
 import Social from "./Components/Social";
 import { useHomePage } from "./useHomePage";
-
 const HomePage = () => {
   const {
     hotProduct,

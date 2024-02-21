@@ -13,6 +13,7 @@ import { MESSAGE } from "@/constants/message";
 const useHeader = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // get pathname
   const { pathname } = useLocation();
   const {
     openModal,
@@ -26,28 +27,38 @@ const useHeader = () => {
   const { cartInfo } = useSelector((state) => state.cart);
   const list = profile?.whiteList?.length || 0;
   const [search, setSearch] = useState();
+  // using useDebounce hanle user type search
   const debounceSearch = useDebounce(search, 500);
-
+  // hanle searching
   useEffect(() => {
     if (debounceSearch !== undefined) {
       navigate(PATHS.PRODUCT + `?search=${debounceSearch}`);
     }
   }, [debounceSearch]);
-
+  // get value search
   const onSearch = (e) => {
     setSearch(e.target?.value || "");
   };
+  // when pathname change close input search
   useEffect(() => {
     setIsOpenSearch(false);
   }, [pathname]);
+  // onLogout
   const onLogout = () => {
+    // dispatch action logout to store
     dispatch(authActions.logout());
+    // set state checkAuthen
     setCheckAuthen(false);
+    // dispatch action set cart empty
     dispatch(cartActions.clearCart());
   };
+  // onRemoveProduct
   const onRemoveProduct = (productId) => {
+    // Checking exist productid
     if (productId) {
+      // dispatch action remove cart by id
       dispatch(removeCart(productId));
+      // get cart after remove cart
       dispatch(getCart());
       message.success(MESSAGE.ROMOVESUCCESS);
     } else {

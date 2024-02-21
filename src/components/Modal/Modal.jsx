@@ -1,6 +1,5 @@
 import { cn } from "@/constants/cn";
 import { AUTHEN_TYPE } from "@/constants/general";
-import { authService } from "@/services/authenService";
 import React from "react";
 import styled from "styled-components";
 import Login from "./Login";

@@ -131,6 +131,7 @@ export const updateCart = createAsyncThunk(
         discount: 0,
         paymentMethod: "string",
       });
+
       thunkAPI.dispatch(getCart());
 
       thunkAPI.fulfillWithValue(cartRes);

@@ -7,7 +7,6 @@ import FilterProducts from "./Components/FilterProducts";
 import ListProducts from "./Components/ListProducts";
 import ToolBox from "./Components/ToolBox";
 import { useProductPage } from "./useProductPage";
-import Loading from "@/components/Loading/Loading";
 
 const ProductPage = () => {
   const { listProductsProps, toolBoxProps, pagiProps, filterProductProps } =

@@ -4,8 +4,6 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import { message } from "antd";
 import { useDispatch } from "react-redux";
 import { useMainContext } from "../Maincontext/MainContext";
-import { LOCAL } from "@/constants/localStorage";
-import { checkAuthen } from "@/constants/checkAuthen";
 
 const useModal = () => {
   const dispatch = useDispatch();

@@ -11,37 +11,50 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 export const useHomePage = () => {
+  // Call API get products
   const { data: dataProducts, loading: loadingProducts } = useQuery(
     productService.getProducts
   );
   const products = dataProducts?.products || [];
+  // Call API get categorise
   const { data: dataCategorise, loading: loadiCategorise } = useQuery(
     productService.getCategories
   );
   const categorise = dataCategorise?.products || [];
-
+  // Call API get brands
   const { data: dataBrands, loading: loadingBrands } = useQuery(() =>
     pageService.getPage("home")
   );
   const brands = dataBrands?.data?.brands || [];
+  // Convert object signature to array
   const dataSignature = dataBrands?.data?.information || [];
   const signature = Object.keys(dataSignature).map((key) => ({
     key,
     ...dataSignature[key],
   }));
+
+  // useMuatation handle submit email to subscribe
   const { execute } = useMutation(subscribeService.subscribe, {
+    // Display success notification after submit successfully
     onSuccess: (data) => {
       console.log(data);
       message.success("Successfully");
     },
+    // Display error notification after submit unsuccessfully
     onFail: (error) => {
       console.log(error);
       message.error("Failed");
     },
   });
-
+  // ---------------------------------------- DEALCOUPON --------------------------------------------//
+  const onSubscribes = (email) => {
+    if (email) {
+      execute?.(email);
+    }
+  };
   // ------------------------------------------ LIST PRODUCT FOR TAB ---------------------------------//
   const [selectTab, setSelectTab] = useState(TAB.FEATURED);
+  // using useMemo handle out list matching for tab and return selectTab
   const hotProduct = useMemo(() => {
     let list = [];
     switch (selectTab) {
@@ -77,11 +90,14 @@ export const useHomePage = () => {
     };
   }, [cateTab, products, categorise, setCateTab]);
   // ---------------------------------------- RENDER OWL PRODUCT ------------------------------------//
+  // renderProduct handle changing tab and render suitable list
   const renderProduct = (data) => {
     const [lisProducts, setListProducts] = useState([]);
+
     useEffect(() => {
       setListProducts(data);
     }, [data]);
+
     const onChangTab = (tab) => {
       if (Object.values(TAB)?.includes(tab)) {
         if (tab !== selectTab) {
@@ -99,16 +115,11 @@ export const useHomePage = () => {
         }
       }
     };
+
     return {
       lisProducts,
       onChangTab,
     };
-  };
-  // ---------------------------------------- DEALCOUPON --------------------------------------------//
-  const onSubscribes = (email) => {
-    if (email) {
-      execute?.(email);
-    }
   };
   // ---------------------------------------- LOADING ----------------------------------------------//
   const isLoading = useDebounce(

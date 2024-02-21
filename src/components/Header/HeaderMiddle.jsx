@@ -5,7 +5,6 @@ import { Link, NavLink } from "react-router-dom";
 import { PATHS } from "../../constants/pathname";
 
 const HeaderMiddle = ({
-  getCategory,
   total,
   totalProduct,
   products,
@@ -17,6 +16,7 @@ const HeaderMiddle = ({
   onSearch,
   search,
 }) => {
+  // Add modal confirm form ant design
   const { confirm } = Modal;
   const onRemoveProductClick = (product) => {
     confirm({
@@ -51,30 +51,21 @@ const HeaderMiddle = ({
         </div>
         <nav className="main-nav">
           <ul className="menu">
+            {/* Routing page */}
             <li>
-              <NavLink onClick={getCategory} to={PATHS.HOME}>
-                Home
-              </NavLink>
+              <NavLink to={PATHS.HOME}>Home</NavLink>
             </li>
             <li>
-              <NavLink onClick={getCategory} to={PATHS.ABOUT}>
-                About Us
-              </NavLink>
+              <NavLink to={PATHS.ABOUT}>About Us</NavLink>
             </li>
             <li>
-              <NavLink onClick={getCategory} to={PATHS.PRODUCT}>
-                Product
-              </NavLink>
+              <NavLink to={PATHS.PRODUCT}>Product</NavLink>
             </li>
             <li>
-              <NavLink onClick={getCategory} to={PATHS.BLOG}>
-                Blog
-              </NavLink>
+              <NavLink to={PATHS.BLOG}>Blog</NavLink>
             </li>
             <li>
-              <NavLink onClick={getCategory} to={PATHS.CONTACT}>
-                Contact Us
-              </NavLink>
+              <NavLink to={PATHS.CONTACT}>Contact Us</NavLink>
             </li>
           </ul>
         </nav>
