@@ -20,6 +20,7 @@ const Input = ({
     rules: props.rules || rules[name],
     defaultValue: "",
   });
+
   return (
     <>
       {renderProp ? (

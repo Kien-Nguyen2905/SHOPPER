@@ -8,11 +8,12 @@ import Input from "../Input/Input";
 
 const Login = ({ activeTab, onLogin }) => {
   const { control, handleSubmit } = useForm({
-    defaultValues: {
-      email: localStorage.getItem("email") || "",
-      password: localStorage.getItem("password") || "",
-      remember: localStorage.getItem("remember") || false,
-    },
+    mode: "onChange",
+    // defaultValues: {
+    //   email: localStorage.getItem("email") || "",
+    //   password: localStorage.getItem("password") || "",
+    //   remember: localStorage.getItem("remember") || false,
+    // },
   });
   const handleLogin = (values) => {
     onLogin?.(values);
@@ -48,13 +49,13 @@ const Login = ({ activeTab, onLogin }) => {
             <span>LOG IN</span>
             <i className="icon-long-arrow-right" />
           </Button>
-          <div className="custom-control custom-checkbox">
+          {/* <div className="custom-control custom-checkbox">
             <Checkbox
               control={control}
               name="remember"
               label="Remember Me "
             ></Checkbox>
-          </div>
+          </div> */}
           {/* <a href="#" className="forgot-link">
             Forgot Your Password?
           </a> */}

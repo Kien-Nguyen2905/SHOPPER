@@ -19,20 +19,21 @@ const QuantityInput = ({
   onChange,
 }) => {
   const [renderValue, setRenderValue] = useState(value || 1);
-  useEffect(() => {
-    const myTimeout = setTimeout(() => {
-      if (value !== renderValue) {
-        setRenderValue(value);
-      }
-    }, 300);
-    return () => clearTimeout(myTimeout);
-  }, [value, value != renderValue]);
+  // useEffect(() => {
+  //   const myTimeout = setTimeout(() => {
+  //     if (value !== renderValue) {
+  //       setRenderValue(value);
+  //     }
+  //   }, 300);
+  //   return () => clearTimeout(myTimeout);
+  // }, [value, value != renderValue]);
   // value is prop products and renderValue is parameter onChange be change products
   // and then value change
   const onInputChange = (e) => {
     setRenderValue(e.target.value);
     onChange?.(e.target.value);
   };
+  // onBlur handle when you blur input with nagative value
   const onInputBlur = (e) => {
     const value = modifyValue(e.target.value);
     setRenderValue(value);
