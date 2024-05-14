@@ -103,7 +103,7 @@ export const useProductDetail = () => {
     }
   };
   const { data: productDetailReviews, refetch: refetchReviews } = useQuery(
-    orderService.getReviewFollowProduct
+    dataProductDetail?.id ? orderService.getReviewFollowProduct : null
   );
   useEffect(() => {
     if (dataProductDetail?.id) {
